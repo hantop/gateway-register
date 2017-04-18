@@ -34,7 +34,7 @@
 		api_name varchar(200) not null comment 'api的名字',
     	api_id varchar(200) not null comment 'api的唯一标识',
 		api_version varchar(20) not null default '1.0.0' comment 'api版本号', 
-		api_paras_name varchar(200) comment '请求参数名',
+		api_paras_name varchar(200) comment '请求参数名,多个用逗号隔开',
 		api_req_method varchar(20) comment '支持的请求方法,多个用英文逗号隔开', 
 		f_sys_info_id bigint(20) not null comment  '所属系统id',
 		api_url varchar(200) not null  comment '请求路径,即对应的spring mvc requestmapping的value值',
