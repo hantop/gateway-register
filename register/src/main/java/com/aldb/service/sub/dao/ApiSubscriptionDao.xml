@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aldb.service.sub.dao.ApiSubscriptionDao" >
+  <resultMap id="ApiSubscription_BaseResultMap" type="com.aldb.service.sub.dao.bean.ApiSubscription" >
+    <result column="oid" property="oid" jdbcType="BIGINT" />
+    <result column="f_app_subscription_id" property="fAppSubscriptionId" jdbcType="BIGINT" />
+    <result column="f_api_info_id" property="fApiInfoId" jdbcType="BIGINT" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+    <result column="updated_by" property="updatedBy" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="ApiSubscription_Base_Column_List" >
+    oid, f_app_subscription_id, f_api_info_id, created_at, updated_at, created_by, updated_by
+  </sql>
+  <select id="getApiSubscriptionIdNextVal" resultType="java.util.Long" >
+    select t_api_subscription_seq.nextval from dual
+  </select>
+  <select id="getApiSubscriptionById" resultMap="ApiSubscription_BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="ApiSubscription_Base_Column_List" />
+    from t_api_subscription
+    where oid = #{oid,jdbcType=BIGINT}
+  </select>
+  <insert id="insertApiSubscription" parameterType="com.aldb.service.sub.dao.bean.ApiSubscription" >
+    insert into t_api_subscription (oid, f_app_subscription_id, f_api_info_id, 
+      created_at, updated_at, created_by, 
+      updated_by)
+    values (#{oid,jdbcType=BIGINT}, #{fAppSubscriptionId,jdbcType=BIGINT}, #{fApiInfoId,jdbcType=BIGINT}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, 
+      #{updatedBy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelectiveApiSubscription" parameterType="com.aldb.service.sub.dao.bean.ApiSubscription" >
+    insert into t_api_subscription
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="oid != null" >
+        oid,
+      </if>
+      <if test="fAppSubscriptionId != null" >
+        f_app_subscription_id,
+      </if>
+      <if test="fApiInfoId != null" >
+        f_api_info_id,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="updatedBy != null" >
+        updated_by,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="oid != null" >
+        #{oid,jdbcType=BIGINT},
+      </if>
+      <if test="fAppSubscriptionId != null" >
+        #{fAppSubscriptionId,jdbcType=BIGINT},
+      </if>
+      <if test="fApiInfoId != null" >
+        #{fApiInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateApiSubscriptionById" parameterType="com.aldb.service.sub.dao.bean.ApiSubscription" >
+    update t_api_subscription
+    set f_app_subscription_id = #{fAppSubscriptionId,jdbcType=BIGINT},
+      f_api_info_id = #{fApiInfoId,jdbcType=BIGINT},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      updated_by = #{updatedBy,jdbcType=VARCHAR}
+    where oid = #{oid,jdbcType=BIGINT}
+  </update>
+  <update id="updateSelectiveApiSubscriptionById" parameterType="com.aldb.service.sub.dao.bean.ApiSubscription" >
+    update t_api_subscription
+    <set >
+      <if test="fAppSubscriptionId != null" >
+        f_app_subscription_id = #{fAppSubscriptionId,jdbcType=BIGINT},
+      </if>
+      <if test="fApiInfoId != null" >
+        f_api_info_id = #{fApiInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null" >
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where oid = #{oid,jdbcType=BIGINT}
+  </update>
+  <delete id="deleteApiSubscriptionById" parameterType="java.lang.Long" >
+    update t_api_subscription set is_delete='Y' 
+    where oid = #{oid,jdbcType=BIGINT}
+  </delete>
+</mapper>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aldb.service.regist.dao.MachineInfoDao" >
+  <resultMap id="MachineInfo_BaseResultMap" type="com.aldb.service.regist.dao.bean.MachineInfo" >
+    <result column="oid" property="oid" jdbcType="BIGINT" />
+    <result column="m_ip" property="mIp" jdbcType="VARCHAR" />
+    <result column="m_port" property="mPort" jdbcType="INTEGER" />
+    <result column="f_sys_info_id" property="fSysInfoId" jdbcType="BIGINT" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+    <result column="updated_by" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="is_online" property="isOnline" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="MachineInfo_Base_Column_List" >
+    oid, m_ip, m_port, f_sys_info_id, created_at, updated_at, created_by, updated_by, 
+    is_online
+  </sql>
+  <select id="getMachineInfoIdNextVal" resultType="java.util.Long" >
+    select t_machine_info_seq.nextval from dual
+  </select>
+  <select id="getMachineInfoById" resultMap="MachineInfo_BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="MachineInfo_Base_Column_List" />
+    from t_machine_info
+    where oid = #{oid,jdbcType=BIGINT}
+  </select>
+  <insert id="insertMachineInfo" parameterType="com.aldb.service.regist.dao.bean.MachineInfo" >
+    insert into t_machine_info (oid, m_ip, m_port, 
+      f_sys_info_id, created_at, updated_at, 
+      created_by, updated_by, is_online
+      )
+    values (#{oid,jdbcType=BIGINT}, #{mIp,jdbcType=VARCHAR}, #{mPort,jdbcType=INTEGER}, 
+      #{fSysInfoId,jdbcType=BIGINT}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{createdBy,jdbcType=VARCHAR}, #{updatedBy,jdbcType=VARCHAR}, #{isOnline,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelectiveMachineInfo" parameterType="com.aldb.service.regist.dao.bean.MachineInfo" >
+    insert into t_machine_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="oid != null" >
+        oid,
+      </if>
+      <if test="mIp != null" >
+        m_ip,
+      </if>
+      <if test="mPort != null" >
+        m_port,
+      </if>
+      <if test="fSysInfoId != null" >
+        f_sys_info_id,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="updatedBy != null" >
+        updated_by,
+      </if>
+      <if test="isOnline != null" >
+        is_online,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="oid != null" >
+        #{oid,jdbcType=BIGINT},
+      </if>
+      <if test="mIp != null" >
+        #{mIp,jdbcType=VARCHAR},
+      </if>
+      <if test="mPort != null" >
+        #{mPort,jdbcType=INTEGER},
+      </if>
+      <if test="fSysInfoId != null" >
+        #{fSysInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="isOnline != null" >
+        #{isOnline,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateMachineInfoById" parameterType="com.aldb.service.regist.dao.bean.MachineInfo" >
+    update t_machine_info
+    set m_ip = #{mIp,jdbcType=VARCHAR},
+      m_port = #{mPort,jdbcType=INTEGER},
+      f_sys_info_id = #{fSysInfoId,jdbcType=BIGINT},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      is_online = #{isOnline,jdbcType=TINYINT}
+    where oid = #{oid,jdbcType=BIGINT}
+  </update>
+  <update id="updateSelectiveMachineInfoById" parameterType="com.aldb.service.regist.dao.bean.MachineInfo" >
+    update t_machine_info
+    <set >
+      <if test="mIp != null" >
+        m_ip = #{mIp,jdbcType=VARCHAR},
+      </if>
+      <if test="mPort != null" >
+        m_port = #{mPort,jdbcType=INTEGER},
+      </if>
+      <if test="fSysInfoId != null" >
+        f_sys_info_id = #{fSysInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null" >
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="isOnline != null" >
+        is_online = #{isOnline,jdbcType=TINYINT},
+      </if>
+    </set>
+    where oid = #{oid,jdbcType=BIGINT}
+  </update>
+  <delete id="deleteMachineInfoById" parameterType="java.lang.Long" >
+    update t_machine_info set is_delete='Y' 
+    where oid = #{oid,jdbcType=BIGINT}
+  </delete>
+</mapper>
