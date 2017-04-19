@@ -9,7 +9,7 @@ import com.aldb.service.common.bean.BaseDto;
  * @author Administrator
  *
  */
-public class ApiInfo extends BaseDto {
+public class ApiInfoDto extends BaseDto {
 
     private Long id;
     private String apiName;

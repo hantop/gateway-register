@@ -12,8 +12,16 @@
     <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
     <result column="updated_by" property="updatedBy" jdbcType="VARCHAR" />
   </resultMap>
-  <select id="getAppInfoIdNextVal" resultType="java.util.Long" >
-    select t_app_info_seq.nextval from dual
+  <sql id="AppInfo_Base_Column_List" >
+    oid, app_name, app_remark, app_id, app_token, created_at, updated_at, created_by, 
+    updated_by
+  </sql>
+
+  <select id="getAppInfoById" resultMap="AppInfo_BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="AppInfo_Base_Column_List" />
+    from t_app_info
+    where oid = #{oid,jdbcType=BIGINT}
   </select>
   <insert id="insertAppInfo" parameterType="com.aldb.service.sub.dao.bean.AppInfo" >
     insert into t_app_info (oid, app_name, app_remark, 
@@ -86,4 +94,50 @@
       </if>
     </trim>
   </insert>
+  <update id="updateAppInfoById" parameterType="com.aldb.service.sub.dao.bean.AppInfo" >
+    update t_app_info
+    set app_name = #{appName,jdbcType=VARCHAR},
+      app_remark = #{appRemark,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=VARCHAR},
+      app_token = #{appToken,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      updated_by = #{updatedBy,jdbcType=VARCHAR}
+    where oid = #{oid,jdbcType=BIGINT}
+  </update>
+  <update id="updateSelectiveAppInfoById" parameterType="com.aldb.service.sub.dao.bean.AppInfo" >
+    update t_app_info
+    <set >
+      <if test="appName != null" >
+        app_name = #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="appRemark != null" >
+        app_remark = #{appRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null" >
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="appToken != null" >
+        app_token = #{appToken,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null" >
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where oid = #{oid,jdbcType=BIGINT}
+  </update>
+  <delete id="deleteAppInfoById" parameterType="java.lang.Long" >
+    delete t_app_info  
+    where oid = #{oid,jdbcType=BIGINT}
+  </delete>
 </mapper>

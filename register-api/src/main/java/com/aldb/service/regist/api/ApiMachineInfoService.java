@@ -5,7 +5,7 @@ package com.aldb.service.regist.api;
 
 import java.util.List;
 
-import com.aldb.service.regist.api.bean.ApiMachineInfo;
+import com.aldb.service.regist.api.bean.ApiMachineInfoDto;
 
 /**
  * @author Administrator
@@ -13,5 +13,5 @@ import com.aldb.service.regist.api.bean.ApiMachineInfo;
  */
 public interface ApiMachineInfoService {
 
-    List<ApiMachineInfo> queryMachineInfosBySysId(Long sysInfoId);
+    List<ApiMachineInfoDto> queryMachineInfosBySysId(Long sysInfoId);
 }

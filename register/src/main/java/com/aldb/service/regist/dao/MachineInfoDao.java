@@ -3,7 +3,7 @@ package com.aldb.service.regist.dao;
 import com.aldb.service.regist.dao.bean.MachineInfo;
 
 public interface MachineInfoDao {
-    Long getMachineInfoIdNextVal();
+   // Long getMachineInfoIdNextVal();
 
     MachineInfo getMachineInfoById(Long oid);
 

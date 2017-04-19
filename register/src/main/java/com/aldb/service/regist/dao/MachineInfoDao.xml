@@ -16,9 +16,7 @@
     oid, m_ip, m_port, f_sys_info_id, created_at, updated_at, created_by, updated_by, 
     is_online
   </sql>
-  <select id="getMachineInfoIdNextVal" resultType="java.util.Long" >
-    select t_machine_info_seq.nextval from dual
-  </select>
+ 
   <select id="getMachineInfoById" resultMap="MachineInfo_BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="MachineInfo_Base_Column_List" />
@@ -139,7 +137,7 @@
     where oid = #{oid,jdbcType=BIGINT}
   </update>
   <delete id="deleteMachineInfoById" parameterType="java.lang.Long" >
-    update t_machine_info set is_delete='Y' 
+    delete t_machine_info  
     where oid = #{oid,jdbcType=BIGINT}
   </delete>
 </mapper>

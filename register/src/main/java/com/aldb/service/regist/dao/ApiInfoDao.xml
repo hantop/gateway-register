@@ -21,9 +21,7 @@
     oid, api_name, api_id, api_version, api_paras_name, api_req_method, f_sys_info_id, 
     api_url, created_at, updated_at, created_by, updated_by, is_online, api_protocol
   </sql>
-  <select id="getApiInfoIdNextVal" resultType="java.util.Long" >
-    select t_api_info_seq.nextval from dual
-  </select>
+
   <select id="getApiInfoById" resultMap="ApiInfo_BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="ApiInfo_Base_Column_List" />
@@ -196,7 +194,7 @@
     where oid = #{oid,jdbcType=BIGINT}
   </update>
   <delete id="deleteApiInfoById" parameterType="java.lang.Long" >
-    update t_api_info set is_delete='Y' 
+    delete t_api_info  
     where oid = #{oid,jdbcType=BIGINT}
   </delete>
 </mapper>

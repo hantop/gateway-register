@@ -9,7 +9,7 @@ import com.aldb.service.common.bean.BaseDto;
  * @author Administrator
  *
  */
-public class AppSubscription extends BaseDto {
+public class AppInfoDto extends BaseDto {
 
     private Long id;
     private Long appName;

@@ -13,9 +13,7 @@
   <sql id="ApiSubscription_Base_Column_List" >
     oid, f_app_subscription_id, f_api_info_id, created_at, updated_at, created_by, updated_by
   </sql>
-  <select id="getApiSubscriptionIdNextVal" resultType="java.util.Long" >
-    select t_api_subscription_seq.nextval from dual
-  </select>
+
   <select id="getApiSubscriptionById" resultMap="ApiSubscription_BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="ApiSubscription_Base_Column_List" />
@@ -114,7 +112,7 @@
     where oid = #{oid,jdbcType=BIGINT}
   </update>
   <delete id="deleteApiSubscriptionById" parameterType="java.lang.Long" >
-    update t_api_subscription set is_delete='Y' 
+    delete t_api_subscription  
     where oid = #{oid,jdbcType=BIGINT}
   </delete>
 </mapper>

@@ -7,7 +7,7 @@ package com.aldb.service.sub.api.bean;
  * @author Administrator
  *
  */
-public class ApiSubscription {
+public class ApiSubscriptionDto {
 
     private Long id;
     private Long appSubscriptionId;

@@ -3,7 +3,7 @@ package com.aldb.service.regist.dao;
 import com.aldb.service.regist.dao.bean.SysInfo;
 
 public interface SysInfoDao {
-    Long getSysInfoIdNextVal();
+  //  Long getSysInfoIdNextVal();
 
     SysInfo getSysInfoById(Long oid);
 

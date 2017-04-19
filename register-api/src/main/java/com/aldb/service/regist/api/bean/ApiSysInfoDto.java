@@ -10,7 +10,7 @@ import com.aldb.service.common.bean.BaseDto;
  * @author Administrator
  *
  */
-public class ApiSysInfo extends BaseDto {
+public class ApiSysInfoDto extends BaseDto {
 
     private Long id;
     private String sysName;

@@ -3,7 +3,7 @@ package com.aldb.service.sub.dao;
 import com.aldb.service.sub.dao.bean.ApiSubscription;
 
 public interface ApiSubscriptionDao {
-    Long getApiSubscriptionIdNextVal();
+    //Long getApiSubscriptionIdNextVal();
 
     ApiSubscription getApiSubscriptionById(Long oid);
 

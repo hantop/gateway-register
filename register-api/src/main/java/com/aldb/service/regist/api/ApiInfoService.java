@@ -3,7 +3,7 @@
  */
 package com.aldb.service.regist.api;
 
-import com.aldb.service.regist.api.bean.ApiInfo;
+import com.aldb.service.regist.api.bean.ApiInfoDto;
 
 /**
  * @author Administrator
@@ -11,6 +11,6 @@ import com.aldb.service.regist.api.bean.ApiInfo;
  */
 public interface ApiInfoService {
 
-    ApiInfo queryApiInfoByIdAndVersion(String apiId, String apiVersion);
+    ApiInfoDto queryApiInfoByIdAndVersion(String apiId, String apiVersion);
 
 }

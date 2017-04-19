@@ -13,9 +13,7 @@
   <sql id="SysInfo_Base_Column_List" >
     oid, sys_name, sys_remark, created_at, updated_at, created_by, updated_by
   </sql>
-  <select id="getSysInfoIdNextVal" resultType="java.util.Long" >
-    select t_sys_info_seq.nextval from dual
-  </select>
+
   <select id="getSysInfoById" resultMap="SysInfo_BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="SysInfo_Base_Column_List" />
@@ -114,7 +112,7 @@
     where oid = #{oid,jdbcType=BIGINT}
   </update>
   <delete id="deleteSysInfoById" parameterType="java.lang.Long" >
-    update t_sys_info set is_delete='Y' 
+    delete t_sys_info  
     where oid = #{oid,jdbcType=BIGINT}
   </delete>
 </mapper>

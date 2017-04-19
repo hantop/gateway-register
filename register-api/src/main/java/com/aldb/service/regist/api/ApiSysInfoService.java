@@ -1,8 +1,8 @@
 package com.aldb.service.regist.api;
 
-import com.aldb.service.regist.api.bean.ApiSysInfo;
+import com.aldb.service.regist.api.bean.ApiSysInfoDto;
 
 public interface ApiSysInfoService {
 
-    ApiSysInfo querySysInfoById(Long id);
+    ApiSysInfoDto querySysInfoById(Long id);
 }

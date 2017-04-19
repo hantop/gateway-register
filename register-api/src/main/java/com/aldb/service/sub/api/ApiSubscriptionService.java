@@ -3,7 +3,7 @@
  */
 package com.aldb.service.sub.api;
 
-import com.aldb.service.sub.api.bean.ApiSubscription;
+import com.aldb.service.sub.api.bean.ApiSubscriptionDto;
 
 /**
  * @author Administrator
@@ -11,6 +11,6 @@ import com.aldb.service.sub.api.bean.ApiSubscription;
  */
 public interface ApiSubscriptionService {
 
-    ApiSubscription queryApiSubscriptionByAppIdAndApiId(Long appSubscriptionId, Long apiInfoId);
+    ApiSubscriptionDto queryApiSubscriptionByAppIdAndApiId(Long appSubscriptionId, Long apiInfoId);
 
 }
