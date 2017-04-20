@@ -150,8 +150,8 @@
 
 			oTableInit.queryParams = function(params) {
 				var temp = { //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
-					limit : params.limit, //第几条记录
-					offset : params.offset, //显示一页多少记录
+					limit : params.limit, //显示一页多少记录
+					offset : params.offset, //第几条记录
 				// sdate: $("#stratTime").val(),
 
 				};
@@ -186,7 +186,7 @@
 		$("#formCommitBtn").click(function() {
 			//向后台提交数据
 			var jsonuserinfo = $('#sysForm').serializeObject();
-			// alert(JSON.stringify(jsonuserinfo));
+			
 			$.post("${ctx}/apiSysInfo/edit", jsonuserinfo, function(data) {
 				//alert(data);
 				if (data == 'ok') {
@@ -198,6 +198,8 @@
 
 			});
 			cleanForm($("#sysForm"));
+			alert('测试一下，看是否自动刷新表格');
+			$('#tradeList').bootstrapTable('refresh');
 			return true;
 		});
 
@@ -218,6 +220,8 @@
 				$.get("${ctx}/apiSysInfo/del?id="+delId,function(data){
 						if(data=='ok'){
 							alert('删除成功');
+							alert('测试一下，看是否自动刷新表格');
+							$('#tradeList').bootstrapTable('refresh');
 						}else {
 							alert(data);	
 						}
