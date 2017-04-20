@@ -8,20 +8,20 @@
 <title>系统信息</title>
 
 <link rel="stylesheet"
-	href="${ctx}/static/adminlte/bootstrap/css/bootstrap.min.css" />
+	href="${ctx}/static/css/bootstrap.min.css" />
 <link rel="stylesheet"
-	href="${ctx}/static/adminlte/bootstrap-table/bootstrap-table.min.css" />
+	href="${ctx}/static/bootstrap-table.min.css" />
 <script type="text/javascript"
-	src="${ctx}/static/adminlte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+	src="${ctx}/static/js/jquery-2.2.3.min.js"></script>
 <script type="text/javascript"
-	src="${ctx}/static/adminlte/bootstrap/js/bootstrap.min.js"></script>
+	src="${ctx}/static/js/bootstrap.min.js"></script>
 <script type="text/javascript"
-	src="${ctx}/static/adminlte/bootstrap-table/bootstrap-table.js"></script>
+	src="${ctx}/static/js/bootstrap-table.js"></script>
 <script type="text/javascript"
-	src="${ctx}/static/adminlte/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+	src="${ctx}/static/js/bootstrap-table-zh-CN.js"></script>
 
 <script type="text/javascript"
-	src="${ctx}/static/adminlte/js/form-serialize.js"></script>
+	src="${ctx}/static/js/form-serialize.js"></script>
 
 <style type="text/css">
 	.kong{

@@ -1,13 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: peter_peng
-  Date: 2017/2/24
-  Time: 上午11:02
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ include file="/WEB-INF/views/taglib.jsp"%>
-
+<!DOCTYPE html>
 <html>
 <head>
 <title>app</title>
@@ -16,25 +9,25 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-<link href="${ctxStatic}/aliyunoss/css/bootstrap.min.css" media="all"
+<link href="${ctx}/static/css/bootstrap.min.css" media="all"
 	rel="stylesheet" type="text/css" />
 
 <link rel="stylesheet"
-	href="${ctxStatic}/loan/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+	href="${ctx}/static/css/jvectormap/jquery-jvectormap-1.2.2.css">
 <!-- Theme style -->
 <link rel="stylesheet"
-	href="${ctxStatic}/loan/dist/css/AdminLTE.min.css">
+	href="${ctx}/static/css/AdminLTE.min.css">
 <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet"
-	href="${ctxStatic}/loan/dist/css/skins/_all-skins.min.css">
+	href="${ctx}/static/css/_all-skins.min.css">
 
 
-<link href="${ctxStatic}/aliyunoss/css/fileinput.min.css" media="all"
+<link href="${ctx}/static/css/fileinput.min.css" media="all"
 	rel="stylesheet" type="text/css" />
-<link href="${ctxStatic}/aliyunoss/css/jquery-confirm.min.css"
+<link href="${ctx}/static/css/jquery-confirm.min.css"
 	rel="stylesheet" type="text/css" />
-<link href="${ctx}/js/base.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body style="background-color: #ecf0f5">
 	<div class="content">
@@ -113,23 +106,23 @@
 
 	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 
-	<script src="${ctxStatic}/aliyunoss/js/jquery.min.js"
+	<script src="${ctxStatic}/js/jquery.min.js"
 		type="text/javascript"></script>
-	<script src="${ctxStatic}/aliyunoss/js/bootstrap.min.js"
+	<script src="${ctxStatic}/js/bootstrap.min.js"
 		type="text/javascript"></script>
 
 
-	<script src="${ctxStatic}/aliyunoss/js/fileinput.min.js"
+	<script src="${ctxStatic}/js/fileinput.min.js"
 		type="text/javascript"></script>
-	<script src="${ctxStatic}/aliyunoss/js/fileinput_locale_zh.js"
+	<script src="${ctxStatic}/js/fileinput_locale_zh.js"
 		type="text/javascript"></script>
-	<script src="${ctxStatic}/aliyunoss/js/jquery-confirm.min.js"></script>
+	<script src="${ctxStatic}/js/jquery-confirm.min.js"></script>
 
-	<script src="${ctxStatic}/aliyunoss/js/clipboard.min.js"></script>
+	<script src="${ctxStatic}/js/clipboard.min.js"></script>
 	<script
-		src="${ctxStatic}/AdminLTE/plugins/datatables/jquery.dataTables.js"></script>
+		src="${ctxStatic}/js/jquery.dataTables.js"></script>
 
-	<script src="${ctx}/js/base-modual.js"></script>
+
 
 
 	<script>
