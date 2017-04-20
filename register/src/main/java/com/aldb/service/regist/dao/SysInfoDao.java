@@ -1,5 +1,9 @@
 package com.aldb.service.regist.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.aldb.service.regist.dao.bean.SysInfo;
 
 public interface SysInfoDao {
@@ -16,4 +20,7 @@ public interface SysInfoDao {
     int updateSelectiveSysInfoById(SysInfo record);
 
     int deleteSysInfoById(Long oid);
+    
+    List<SysInfo> querySysInfoList(@Param("size") int size,@Param("start") int start);
+    
 }

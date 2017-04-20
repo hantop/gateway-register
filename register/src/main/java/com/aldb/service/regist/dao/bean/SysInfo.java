@@ -9,44 +9,46 @@ public class SysInfo {
     /**
      * pk
      */
-    private Long oid;
+    private Long id;
 
     /**
-     * 系统名字
+     * 绯荤粺鍚嶅瓧
      */
     private String sysName;
 
     /**
-     * 系统说明
+     * 绯荤粺璇存槑
      */
     private String sysRemark;
 
     /**
-     * 创建时间
+     * 鍒涘缓鏃堕棿
      */
     private Date createdAt;
 
     /**
-     * 更新时间
+     * 鏇存柊鏃堕棿
      */
     private Date updatedAt;
 
     /**
-     * 创建人
+     * 鍒涘缓浜�
      */
     private String createdBy;
 
     /**
-     * 更新人
+     * 鏇存柊浜�
      */
     private String updatedBy;
 
-    public Long getOid() {
-        return oid;
+  
+
+    public Long getId() {
+        return id;
     }
 
-    public void setOid(Long oid) {
-        this.oid = oid;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getSysName() {

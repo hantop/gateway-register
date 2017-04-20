@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.aldb.service.regist.dao.SysInfoDao" >
   <resultMap id="SysInfo_BaseResultMap" type="com.aldb.service.regist.dao.bean.SysInfo" >
-    <result column="oid" property="oid" jdbcType="BIGINT" />
+    <result column="oid" property="id" jdbcType="BIGINT" />
     <result column="sys_name" property="sysName" jdbcType="VARCHAR" />
     <result column="sys_remark" property="sysRemark" jdbcType="VARCHAR" />
     <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
@@ -20,11 +20,11 @@
     from t_sys_info
     where oid = #{oid,jdbcType=BIGINT}
   </select>
-  <insert id="insertSysInfo" parameterType="com.aldb.service.regist.dao.bean.SysInfo" >
+  <insert id="insertSysInfo" parameterType="com.aldb.service.regist.dao.bean.SysInfo" keyProperty="id" useGeneratedKeys="true">
     insert into t_sys_info (oid, sys_name, sys_remark, 
       created_at, updated_at, created_by, 
       updated_by)
-    values (#{oid,jdbcType=BIGINT}, #{sysName,jdbcType=VARCHAR}, #{sysRemark,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{sysName,jdbcType=VARCHAR}, #{sysRemark,jdbcType=VARCHAR}, 
       #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, 
       #{updatedBy,jdbcType=VARCHAR})
   </insert>
@@ -55,7 +55,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="oid != null" >
-        #{oid,jdbcType=BIGINT},
+        #{id,jdbcType=BIGINT},
       </if>
       <if test="sysName != null" >
         #{sysName,jdbcType=VARCHAR},
@@ -85,7 +85,7 @@
       updated_at = #{updatedAt,jdbcType=TIMESTAMP},
       created_by = #{createdBy,jdbcType=VARCHAR},
       updated_by = #{updatedBy,jdbcType=VARCHAR}
-    where oid = #{oid,jdbcType=BIGINT}
+    where oid = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateSelectiveSysInfoById" parameterType="com.aldb.service.regist.dao.bean.SysInfo" >
     update t_sys_info
@@ -109,10 +109,18 @@
         updated_by = #{updatedBy,jdbcType=VARCHAR},
       </if>
     </set>
-    where oid = #{oid,jdbcType=BIGINT}
+    where oid = #{id,jdbcType=BIGINT}
   </update>
   <delete id="deleteSysInfoById" parameterType="java.lang.Long" >
-    delete t_sys_info  
-    where oid = #{oid,jdbcType=BIGINT}
+    delete from t_sys_info  
+    where oid = #{id,jdbcType=BIGINT}
   </delete>
+  
+
+ <select id="querySysInfoList" resultMap="SysInfo_BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="SysInfo_Base_Column_List" />
+    from t_sys_info
+    LIMIT ${start},${size}
+  </select>
 </mapper>

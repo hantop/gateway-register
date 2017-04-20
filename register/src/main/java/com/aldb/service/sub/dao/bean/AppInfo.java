@@ -9,7 +9,7 @@ public class AppInfo {
     /**
      * pk
      */
-    private Long oid;
+    private Long id;
 
     /**
      * 系统名字
@@ -51,12 +51,14 @@ public class AppInfo {
      */
     private String updatedBy;
 
-    public Long getOid() {
-        return oid;
+ 
+
+    public Long getId() {
+        return id;
     }
 
-    public void setOid(Long oid) {
-        this.oid = oid;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getAppName() {

@@ -9,7 +9,7 @@ public class ApiInfo {
     /**
      * pk
      */
-    private Long oid;
+    private Long id;
 
     /**
      * api的名字
@@ -69,19 +69,27 @@ public class ApiInfo {
     /**
      * 是否在线，1在线0下线
      */
-    private Byte isOnline;
+    private Integer isOnline;
 
     /**
      * 请求协议,http,https
      */
     private String apiProtocol;
 
-    public Long getOid() {
-        return oid;
+  
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
     }
 
-    public void setOid(Long oid) {
-        this.oid = oid;
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getApiName() {
@@ -172,11 +180,11 @@ public class ApiInfo {
         this.updatedBy = updatedBy == null ? null : updatedBy.trim();
     }
 
-    public Byte getIsOnline() {
+    public Integer getIsOnline() {
         return isOnline;
     }
 
-    public void setIsOnline(Byte isOnline) {
+    public void setIsOnline(Integer isOnline) {
         this.isOnline = isOnline;
     }
 

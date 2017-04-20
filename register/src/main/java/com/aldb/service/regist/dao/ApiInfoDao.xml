@@ -1,200 +1,221 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.aldb.service.regist.dao.ApiInfoDao" >
-  <resultMap id="ApiInfo_BaseResultMap" type="com.aldb.service.regist.dao.bean.ApiInfo" >
-    <result column="oid" property="oid" jdbcType="BIGINT" />
-    <result column="api_name" property="apiName" jdbcType="VARCHAR" />
-    <result column="api_id" property="apiId" jdbcType="VARCHAR" />
-    <result column="api_version" property="apiVersion" jdbcType="VARCHAR" />
-    <result column="api_paras_name" property="apiParasName" jdbcType="VARCHAR" />
-    <result column="api_req_method" property="apiReqMethod" jdbcType="VARCHAR" />
-    <result column="f_sys_info_id" property="fSysInfoId" jdbcType="BIGINT" />
-    <result column="api_url" property="apiUrl" jdbcType="VARCHAR" />
-    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
-    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
-    <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
-    <result column="updated_by" property="updatedBy" jdbcType="VARCHAR" />
-    <result column="is_online" property="isOnline" jdbcType="TINYINT" />
-    <result column="api_protocol" property="apiProtocol" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="ApiInfo_Base_Column_List" >
-    oid, api_name, api_id, api_version, api_paras_name, api_req_method, f_sys_info_id, 
-    api_url, created_at, updated_at, created_by, updated_by, is_online, api_protocol
-  </sql>
+<mapper namespace="com.aldb.service.regist.dao.ApiInfoDao">
+	<resultMap id="ApiInfo_BaseResultMap" type="com.aldb.service.regist.dao.bean.ApiInfo">
+		<result column="oid" property="id" jdbcType="BIGINT" />
+		<result column="api_name" property="apiName" jdbcType="VARCHAR" />
+		<result column="api_id" property="apiId" jdbcType="VARCHAR" />
+		<result column="api_version" property="apiVersion" jdbcType="VARCHAR" />
+		<result column="api_paras_name" property="apiParasName"
+			jdbcType="VARCHAR" />
+		<result column="api_req_method" property="apiReqMethod"
+			jdbcType="VARCHAR" />
+		<result column="f_sys_info_id" property="fSysInfoId" jdbcType="BIGINT" />
+		<result column="api_url" property="apiUrl" jdbcType="VARCHAR" />
+		<result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+		<result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+		<result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+		<result column="updated_by" property="updatedBy" jdbcType="VARCHAR" />
+		<result column="is_online" property="isOnline" jdbcType="TINYINT" />
+		<result column="api_protocol" property="apiProtocol" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="ApiInfo_Base_Column_List">
+		oid, api_name, api_id, api_version, api_paras_name, api_req_method,
+		f_sys_info_id,
+		api_url, created_at, updated_at, created_by, updated_by, is_online,
+		api_protocol
+	</sql>
 
-  <select id="getApiInfoById" resultMap="ApiInfo_BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="ApiInfo_Base_Column_List" />
-    from t_api_info
-    where oid = #{oid,jdbcType=BIGINT}
-  </select>
-  <insert id="insertApiInfo" parameterType="com.aldb.service.regist.dao.bean.ApiInfo" >
-    insert into t_api_info (oid, api_name, api_id, 
-      api_version, api_paras_name, api_req_method, 
-      f_sys_info_id, api_url, created_at, 
-      updated_at, created_by, updated_by, 
-      is_online, api_protocol)
-    values (#{oid,jdbcType=BIGINT}, #{apiName,jdbcType=VARCHAR}, #{apiId,jdbcType=VARCHAR}, 
-      #{apiVersion,jdbcType=VARCHAR}, #{apiParasName,jdbcType=VARCHAR}, #{apiReqMethod,jdbcType=VARCHAR}, 
-      #{fSysInfoId,jdbcType=BIGINT}, #{apiUrl,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
-      #{updatedAt,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, #{updatedBy,jdbcType=VARCHAR}, 
-      #{isOnline,jdbcType=TINYINT}, #{apiProtocol,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelectiveApiInfo" parameterType="com.aldb.service.regist.dao.bean.ApiInfo" >
-    insert into t_api_info
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="oid != null" >
-        oid,
-      </if>
-      <if test="apiName != null" >
-        api_name,
-      </if>
-      <if test="apiId != null" >
-        api_id,
-      </if>
-      <if test="apiVersion != null" >
-        api_version,
-      </if>
-      <if test="apiParasName != null" >
-        api_paras_name,
-      </if>
-      <if test="apiReqMethod != null" >
-        api_req_method,
-      </if>
-      <if test="fSysInfoId != null" >
-        f_sys_info_id,
-      </if>
-      <if test="apiUrl != null" >
-        api_url,
-      </if>
-      <if test="createdAt != null" >
-        created_at,
-      </if>
-      <if test="updatedAt != null" >
-        updated_at,
-      </if>
-      <if test="createdBy != null" >
-        created_by,
-      </if>
-      <if test="updatedBy != null" >
-        updated_by,
-      </if>
-      <if test="isOnline != null" >
-        is_online,
-      </if>
-      <if test="apiProtocol != null" >
-        api_protocol,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="oid != null" >
-        #{oid,jdbcType=BIGINT},
-      </if>
-      <if test="apiName != null" >
-        #{apiName,jdbcType=VARCHAR},
-      </if>
-      <if test="apiId != null" >
-        #{apiId,jdbcType=VARCHAR},
-      </if>
-      <if test="apiVersion != null" >
-        #{apiVersion,jdbcType=VARCHAR},
-      </if>
-      <if test="apiParasName != null" >
-        #{apiParasName,jdbcType=VARCHAR},
-      </if>
-      <if test="apiReqMethod != null" >
-        #{apiReqMethod,jdbcType=VARCHAR},
-      </if>
-      <if test="fSysInfoId != null" >
-        #{fSysInfoId,jdbcType=BIGINT},
-      </if>
-      <if test="apiUrl != null" >
-        #{apiUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="createdAt != null" >
-        #{createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updatedAt != null" >
-        #{updatedAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createdBy != null" >
-        #{createdBy,jdbcType=VARCHAR},
-      </if>
-      <if test="updatedBy != null" >
-        #{updatedBy,jdbcType=VARCHAR},
-      </if>
-      <if test="isOnline != null" >
-        #{isOnline,jdbcType=TINYINT},
-      </if>
-      <if test="apiProtocol != null" >
-        #{apiProtocol,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateApiInfoById" parameterType="com.aldb.service.regist.dao.bean.ApiInfo" >
-    update t_api_info
-    set api_name = #{apiName,jdbcType=VARCHAR},
-      api_id = #{apiId,jdbcType=VARCHAR},
-      api_version = #{apiVersion,jdbcType=VARCHAR},
-      api_paras_name = #{apiParasName,jdbcType=VARCHAR},
-      api_req_method = #{apiReqMethod,jdbcType=VARCHAR},
-      f_sys_info_id = #{fSysInfoId,jdbcType=BIGINT},
-      api_url = #{apiUrl,jdbcType=VARCHAR},
-      created_at = #{createdAt,jdbcType=TIMESTAMP},
-      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
-      created_by = #{createdBy,jdbcType=VARCHAR},
-      updated_by = #{updatedBy,jdbcType=VARCHAR},
-      is_online = #{isOnline,jdbcType=TINYINT},
-      api_protocol = #{apiProtocol,jdbcType=VARCHAR}
-    where oid = #{oid,jdbcType=BIGINT}
-  </update>
-  <update id="updateSelectiveApiInfoById" parameterType="com.aldb.service.regist.dao.bean.ApiInfo" >
-    update t_api_info
-    <set >
-      <if test="apiName != null" >
-        api_name = #{apiName,jdbcType=VARCHAR},
-      </if>
-      <if test="apiId != null" >
-        api_id = #{apiId,jdbcType=VARCHAR},
-      </if>
-      <if test="apiVersion != null" >
-        api_version = #{apiVersion,jdbcType=VARCHAR},
-      </if>
-      <if test="apiParasName != null" >
-        api_paras_name = #{apiParasName,jdbcType=VARCHAR},
-      </if>
-      <if test="apiReqMethod != null" >
-        api_req_method = #{apiReqMethod,jdbcType=VARCHAR},
-      </if>
-      <if test="fSysInfoId != null" >
-        f_sys_info_id = #{fSysInfoId,jdbcType=BIGINT},
-      </if>
-      <if test="apiUrl != null" >
-        api_url = #{apiUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="createdAt != null" >
-        created_at = #{createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updatedAt != null" >
-        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createdBy != null" >
-        created_by = #{createdBy,jdbcType=VARCHAR},
-      </if>
-      <if test="updatedBy != null" >
-        updated_by = #{updatedBy,jdbcType=VARCHAR},
-      </if>
-      <if test="isOnline != null" >
-        is_online = #{isOnline,jdbcType=TINYINT},
-      </if>
-      <if test="apiProtocol != null" >
-        api_protocol = #{apiProtocol,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where oid = #{oid,jdbcType=BIGINT}
-  </update>
-  <delete id="deleteApiInfoById" parameterType="java.lang.Long" >
-    delete t_api_info  
-    where oid = #{oid,jdbcType=BIGINT}
-  </delete>
+	<select id="getApiInfoById" resultMap="ApiInfo_BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="ApiInfo_Base_Column_List" />
+		from t_api_info
+		where oid = #{oid,jdbcType=BIGINT}
+	</select>
+	<insert id="insertApiInfo" parameterType="com.aldb.service.regist.dao.bean.ApiInfo">
+		insert into t_api_info (oid, api_name, api_id,
+		api_version, api_paras_name, api_req_method,
+		f_sys_info_id, api_url, created_at,
+		updated_at, created_by, updated_by,
+		is_online, api_protocol)
+		values (#{oid,jdbcType=BIGINT}, #{apiName,jdbcType=VARCHAR},
+		#{apiId,jdbcType=VARCHAR},
+		#{apiVersion,jdbcType=VARCHAR}, #{apiParasName,jdbcType=VARCHAR}, #{apiReqMethod,jdbcType=VARCHAR},
+		#{fSysInfoId,jdbcType=BIGINT}, #{apiUrl,jdbcType=VARCHAR},
+		#{createdAt,jdbcType=TIMESTAMP},
+		#{updatedAt,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, #{updatedBy,jdbcType=VARCHAR},
+		#{isOnline,jdbcType=TINYINT}, #{apiProtocol,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelectiveApiInfo" parameterType="com.aldb.service.regist.dao.bean.ApiInfo">
+		insert into t_api_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="oid != null">
+				oid,
+			</if>
+			<if test="apiName != null">
+				api_name,
+			</if>
+			<if test="apiId != null">
+				api_id,
+			</if>
+			<if test="apiVersion != null">
+				api_version,
+			</if>
+			<if test="apiParasName != null">
+				api_paras_name,
+			</if>
+			<if test="apiReqMethod != null">
+				api_req_method,
+			</if>
+			<if test="fSysInfoId != null">
+				f_sys_info_id,
+			</if>
+			<if test="apiUrl != null">
+				api_url,
+			</if>
+			<if test="createdAt != null">
+				created_at,
+			</if>
+			<if test="updatedAt != null">
+				updated_at,
+			</if>
+			<if test="createdBy != null">
+				created_by,
+			</if>
+			<if test="updatedBy != null">
+				updated_by,
+			</if>
+			<if test="isOnline != null">
+				is_online,
+			</if>
+			<if test="apiProtocol != null">
+				api_protocol,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="oid != null">
+				#{oid,jdbcType=BIGINT},
+			</if>
+			<if test="apiName != null">
+				#{apiName,jdbcType=VARCHAR},
+			</if>
+			<if test="apiId != null">
+				#{apiId,jdbcType=VARCHAR},
+			</if>
+			<if test="apiVersion != null">
+				#{apiVersion,jdbcType=VARCHAR},
+			</if>
+			<if test="apiParasName != null">
+				#{apiParasName,jdbcType=VARCHAR},
+			</if>
+			<if test="apiReqMethod != null">
+				#{apiReqMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="fSysInfoId != null">
+				#{fSysInfoId,jdbcType=BIGINT},
+			</if>
+			<if test="apiUrl != null">
+				#{apiUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="createdAt != null">
+				#{createdAt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updatedAt != null">
+				#{updatedAt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createdBy != null">
+				#{createdBy,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedBy != null">
+				#{updatedBy,jdbcType=VARCHAR},
+			</if>
+			<if test="isOnline != null">
+				#{isOnline,jdbcType=TINYINT},
+			</if>
+			<if test="apiProtocol != null">
+				#{apiProtocol,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateApiInfoById" parameterType="com.aldb.service.regist.dao.bean.ApiInfo">
+		update t_api_info
+		set api_name = #{apiName,jdbcType=VARCHAR},
+		api_id = #{apiId,jdbcType=VARCHAR},
+		api_version = #{apiVersion,jdbcType=VARCHAR},
+		api_paras_name = #{apiParasName,jdbcType=VARCHAR},
+		api_req_method = #{apiReqMethod,jdbcType=VARCHAR},
+		f_sys_info_id = #{fSysInfoId,jdbcType=BIGINT},
+		api_url = #{apiUrl,jdbcType=VARCHAR},
+		created_at = #{createdAt,jdbcType=TIMESTAMP},
+		updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+		created_by = #{createdBy,jdbcType=VARCHAR},
+		updated_by = #{updatedBy,jdbcType=VARCHAR},
+		is_online = #{isOnline,jdbcType=TINYINT},
+		api_protocol = #{apiProtocol,jdbcType=VARCHAR}
+		where oid = #{oid,jdbcType=BIGINT}
+	</update>
+	<update id="updateSelectiveApiInfoById" parameterType="com.aldb.service.regist.dao.bean.ApiInfo">
+		update t_api_info
+		<set>
+			<if test="apiName != null">
+				api_name = #{apiName,jdbcType=VARCHAR},
+			</if>
+			<if test="apiId != null">
+				api_id = #{apiId,jdbcType=VARCHAR},
+			</if>
+			<if test="apiVersion != null">
+				api_version = #{apiVersion,jdbcType=VARCHAR},
+			</if>
+			<if test="apiParasName != null">
+				api_paras_name = #{apiParasName,jdbcType=VARCHAR},
+			</if>
+			<if test="apiReqMethod != null">
+				api_req_method = #{apiReqMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="fSysInfoId != null">
+				f_sys_info_id = #{fSysInfoId,jdbcType=BIGINT},
+			</if>
+			<if test="apiUrl != null">
+				api_url = #{apiUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="createdAt != null">
+				created_at = #{createdAt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updatedAt != null">
+				updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createdBy != null">
+				created_by = #{createdBy,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedBy != null">
+				updated_by = #{updatedBy,jdbcType=VARCHAR},
+			</if>
+			<if test="isOnline != null">
+				is_online = #{isOnline,jdbcType=TINYINT},
+			</if>
+			<if test="apiProtocol != null">
+				api_protocol = #{apiProtocol,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where oid = #{oid,jdbcType=BIGINT}
+	</update>
+	<delete id="deleteApiInfoById" parameterType="java.lang.Long">
+		delete from t_api_info
+		where oid = #{oid,jdbcType=BIGINT}
+	</delete>
+
+
+
+
+	<select id="queryApiInfoList" resultMap="ApiInfo_BaseResultMap">
+		select
+		<include refid="ApiInfo_Base_Column_List" />
+		from t_api_info
+		LIMIT ${start},${size}
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from t_api_info
+	</select>
 </mapper>

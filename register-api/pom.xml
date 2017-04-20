@@ -1,12 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.aldb.gateway</groupId>
-	<artifactId>gateway-api</artifactId>
+	<groupId>com.aldb.service</groupId>
+	<artifactId>service-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>gateway_register Maven Webapp</name>
+	<name>service-api</name>
 
 	<!-- <parent> <artifactId>gateway_register</artifactId> </parent> -->
 
@@ -14,6 +14,6 @@
 	<url>http://maven.apache.org</url>
 
 	<build>
-		<finalName>gateway-api</finalName>
+		<finalName>service-api</finalName>
 	</build>
 </project>
