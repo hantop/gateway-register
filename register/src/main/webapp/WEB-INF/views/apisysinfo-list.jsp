@@ -10,13 +10,13 @@
 <link rel="stylesheet"
 	href="${ctx}/static/css/bootstrap.min.css" />
 <link rel="stylesheet"
-	href="${ctx}/static/bootstrap-table.min.css" />
+	href="${ctx}/static/css/bootstrap-table.min.css" />
 <script type="text/javascript"
 	src="${ctx}/static/js/jquery-2.2.3.min.js"></script>
 <script type="text/javascript"
 	src="${ctx}/static/js/bootstrap.min.js"></script>
 <script type="text/javascript"
-	src="${ctx}/static/js/bootstrap-table.js"></script>
+	src="${ctx}/static/js/bootstrap-table.min.js"></script>
 <script type="text/javascript"
 	src="${ctx}/static/js/bootstrap-table-zh-CN.js"></script>
 
@@ -198,7 +198,7 @@
 
 			});
 			cleanForm($("#sysForm"));
-			alert('测试一下，看是否自动刷新表格');
+			//alert('测试一下，看是否自动刷新表格');
 			$('#tradeList').bootstrapTable('refresh');
 			return true;
 		});
@@ -220,7 +220,7 @@
 				$.get("${ctx}/apiSysInfo/del?id="+delId,function(data){
 						if(data=='ok'){
 							alert('删除成功');
-							alert('测试一下，看是否自动刷新表格');
+							//alert('测试一下，看是否自动刷新表格');
 							$('#tradeList').bootstrapTable('refresh');
 						}else {
 							alert(data);	

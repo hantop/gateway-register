@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import com.aldb.service.common.bean.Page;
+import com.aldb.service.common.bean.PaginationParas;
 import com.aldb.service.regist.api.ApiInfoService;
 import com.aldb.service.regist.api.bean.ApiInfoDto;
 import com.aldb.service.regist.dao.ApiInfoDao;
@@ -29,7 +30,7 @@ public class ApiInfoServiceImpl implements ApiInfoService {
     private static Log logger = LogFactory.getLog(ApiInfoServiceImpl.class);
 
     /**
-     * ¸ù¾ÝapiId¼°apiVersion²éÑ¯apiÐÅÏ¢
+     * ï¿½ï¿½ï¿½apiIdï¿½ï¿½apiVersionï¿½ï¿½Ñ¯apiï¿½ï¿½Ï¢
      */
     public ApiInfoDto queryApiDtoByIdAndVersion(String apiId, String apiVersion) {
 
@@ -39,7 +40,7 @@ public class ApiInfoServiceImpl implements ApiInfoService {
     @Autowired
     private ApiInfoDao apiInfoDao;
 
-    @Override
+  /*  @Override
     public Page<ApiInfoDto> getBannerPage(int start, int pageSize, String loanAppName) {
 
         List<ApiInfo> list = apiInfoDao.queryApiInfoList(start, pageSize, loanAppName);
@@ -55,7 +56,7 @@ public class ApiInfoServiceImpl implements ApiInfoService {
                 start, pageSize, infoDtoList);
 
         return page;
-    }
+    }*/
 
     @Override
     public ApiInfoDto queryApiInfoDtoById(Long id) {
@@ -63,6 +64,21 @@ public class ApiInfoServiceImpl implements ApiInfoService {
         ApiInfoDto dto = new ApiInfoDto();
         BeanUtils.copyProperties(apiInfo, dto);
         return dto;
+    }
+
+   
+    @Override
+    public List<ApiInfoDto> getApiInfoDtoList(PaginationParas paginationParas) {
+        List<ApiInfo> list = apiInfoDao.queryApiInfoList(paginationParas.getLimit(), paginationParas.getOffset(), null);
+        List<ApiInfoDto> infoDtoList = new ArrayList<ApiInfoDto>();
+        if (!CollectionUtils.isEmpty(list)) {
+            for (ApiInfo apiInfo : list) {
+                ApiInfoDto dto = new ApiInfoDto();
+                BeanUtils.copyProperties(apiInfo, dto);
+                infoDtoList.add(dto);
+            }
+        }
+        return infoDtoList;
     }
 
 }

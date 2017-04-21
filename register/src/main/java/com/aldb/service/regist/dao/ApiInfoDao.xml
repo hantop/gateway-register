@@ -18,12 +18,14 @@
 		<result column="updated_by" property="updatedBy" jdbcType="VARCHAR" />
 		<result column="is_online" property="isOnline" jdbcType="TINYINT" />
 		<result column="api_protocol" property="apiProtocol" jdbcType="VARCHAR" />
+		<result column="resp_format" property="respFormat" jdbcType="VARCHAR" />
+		<result column="resp_params" property="respParams" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="ApiInfo_Base_Column_List">
 		oid, api_name, api_id, api_version, api_paras_name, api_req_method,
 		f_sys_info_id,
 		api_url, created_at, updated_at, created_by, updated_by, is_online,
-		api_protocol
+		api_protocol,resp_format,resp_params
 	</sql>
 
 	<select id="getApiInfoById" resultMap="ApiInfo_BaseResultMap"
@@ -31,23 +33,25 @@
 		select
 		<include refid="ApiInfo_Base_Column_List" />
 		from t_api_info
-		where oid = #{oid,jdbcType=BIGINT}
+		where oid = #{id,jdbcType=BIGINT}
 	</select>
 	<insert id="insertApiInfo" parameterType="com.aldb.service.regist.dao.bean.ApiInfo">
 		insert into t_api_info (oid, api_name, api_id,
 		api_version, api_paras_name, api_req_method,
 		f_sys_info_id, api_url, created_at,
 		updated_at, created_by, updated_by,
-		is_online, api_protocol)
-		values (#{oid,jdbcType=BIGINT}, #{apiName,jdbcType=VARCHAR},
+		is_online, api_protocol,resp_format,resp_params)
+		values (#{id,jdbcType=BIGINT}, #{apiName,jdbcType=VARCHAR},
 		#{apiId,jdbcType=VARCHAR},
 		#{apiVersion,jdbcType=VARCHAR}, #{apiParasName,jdbcType=VARCHAR}, #{apiReqMethod,jdbcType=VARCHAR},
 		#{fSysInfoId,jdbcType=BIGINT}, #{apiUrl,jdbcType=VARCHAR},
 		#{createdAt,jdbcType=TIMESTAMP},
 		#{updatedAt,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, #{updatedBy,jdbcType=VARCHAR},
-		#{isOnline,jdbcType=TINYINT}, #{apiProtocol,jdbcType=VARCHAR})
+		#{isOnline,jdbcType=TINYINT}, #{apiProtocol,jdbcType=VARCHAR},
+		#{respFormat,jdbcType=VARCHAR},#{respParams,jdbcType=VARCHAR}
+		)
 	</insert>
-	<insert id="insertSelectiveApiInfo" parameterType="com.aldb.service.regist.dao.bean.ApiInfo">
+	<insert id="insertSelectiveApiInfo" parameterType="com.aldb.service.regist.dao.bean.ApiInfo" keyProperty="id" useGeneratedKeys="true">
 		insert into t_api_info
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="oid != null">
@@ -92,10 +96,16 @@
 			<if test="apiProtocol != null">
 				api_protocol,
 			</if>
+			<if test="respFormat != null">
+				resp_format,
+			</if>
+			<if test="respParams != null">
+				resp_params,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="oid != null">
-				#{oid,jdbcType=BIGINT},
+				#{id,jdbcType=BIGINT},
 			</if>
 			<if test="apiName != null">
 				#{apiName,jdbcType=VARCHAR},
@@ -136,6 +146,12 @@
 			<if test="apiProtocol != null">
 				#{apiProtocol,jdbcType=VARCHAR},
 			</if>
+			<if test="respFormat != null">
+				#{respFormat,jdbcType=VARCHAR},
+			</if>
+			<if test="respParams != null">
+				#{respParams,jdbcType=VARCHAR},
+			</if>
 		</trim>
 	</insert>
 	<update id="updateApiInfoById" parameterType="com.aldb.service.regist.dao.bean.ApiInfo">
@@ -152,8 +168,10 @@
 		created_by = #{createdBy,jdbcType=VARCHAR},
 		updated_by = #{updatedBy,jdbcType=VARCHAR},
 		is_online = #{isOnline,jdbcType=TINYINT},
-		api_protocol = #{apiProtocol,jdbcType=VARCHAR}
-		where oid = #{oid,jdbcType=BIGINT}
+		api_protocol = #{apiProtocol,jdbcType=VARCHAR},
+		resp_format = #{respFormat,jdbcType=VARCHAR},
+		resp_params = #{respParams,jdbcType=VARCHAR}
+		where oid = #{id,jdbcType=BIGINT}
 	</update>
 	<update id="updateSelectiveApiInfoById" parameterType="com.aldb.service.regist.dao.bean.ApiInfo">
 		update t_api_info
@@ -202,7 +220,7 @@
 	</update>
 	<delete id="deleteApiInfoById" parameterType="java.lang.Long">
 		delete from t_api_info
-		where oid = #{oid,jdbcType=BIGINT}
+		where oid = #{id,jdbcType=BIGINT}
 	</delete>
 
 

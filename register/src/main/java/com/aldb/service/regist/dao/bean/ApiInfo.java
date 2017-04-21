@@ -77,6 +77,26 @@ public class ApiInfo {
     private String apiProtocol;
 
   
+    private String respFormat; // 响应格式
+    private String respParams;// 响应参数
+    
+    
+    
+    public String getRespFormat() {
+        return respFormat;
+    }
+
+    public void setRespFormat(String respFormat) {
+        this.respFormat = respFormat;
+    }
+
+    public String getRespParams() {
+        return respParams;
+    }
+
+    public void setRespParams(String respParams) {
+        this.respParams = respParams;
+    }
 
     /**
      * @return the id

@@ -23,7 +23,7 @@ public interface ApiInfoDao {
     
     
     
-   public  List<ApiInfo>  queryApiInfoList(@Param("start") int start, @Param("size") int size, @Param("pdName") String pdName);
+   public  List<ApiInfo>  queryApiInfoList( @Param("size") int size, @Param("start") int start,@Param("pdName") String pdName);
     
     public int count(@Param("pdName") String pdName);
 }

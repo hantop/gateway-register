@@ -1,327 +1,48 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/views/taglib.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>app</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-	name="viewport">
-<link href="${ctx}/static/css/bootstrap.min.css" media="all"
-	rel="stylesheet" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>服务注册</title>
 
 <link rel="stylesheet"
-	href="${ctx}/static/css/jvectormap/jquery-jvectormap-1.2.2.css">
-<!-- Theme style -->
+	href="${ctx}/static/css/bootstrap.min.css" />
 <link rel="stylesheet"
-	href="${ctx}/static/css/AdminLTE.min.css">
-<!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-<link rel="stylesheet"
-	href="${ctx}/static/css/_all-skins.min.css">
+	href="${ctx}/static/css/bootstrap-table.min.css" />
+<script type="text/javascript"
+	src="${ctx}/static/js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript"
+	src="${ctx}/static/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="${ctx}/static/js/bootstrap-table.min.js"></script>
+<script type="text/javascript"
+	src="${ctx}/static/js/bootstrap-table-zh-CN.js"></script>
 
+<script type="text/javascript"
+	src="${ctx}/static/js/form-serialize.js"></script>
 
-<link href="${ctx}/static/css/fileinput.min.css" media="all"
-	rel="stylesheet" type="text/css" />
-<link href="${ctx}/static/css/jquery-confirm.min.css"
-	rel="stylesheet" type="text/css" />
-
+<style type="text/css">
+	.kong{
+		margin-top:1em;
+	}
+	.juyou{
+		float:right;
+		margin-bottom:1em;
+	}
+</style>
 </head>
-<body style="background-color: #ecf0f5">
-	<div class="content">
-		<!-- Content Header (Page header) -->
-		<section class="content-header">
-			<h1>
-				api服务注册 <small></small>
-			</h1>
-			<ol class="breadcrumb">
-				<li><a href="/ops/main"><i class="fa fa-dashboard"></i>
-						Home</a></li>
-				<li class="active">app</li>
-			</ol>
-		</section>
-
-		<!-- Main content -->
-
-		<div class="panel panel-default">
-			<!-- Default panel contents -->
-			<div class="panel-heading">
-				<div class="row">
-					<div class="col-md-8">
-						<!--                     <div class="col-md-4">
-                        <div class="btn-group" role="group" aria-label="...">
-                            <button onclick="javascript:window.location.reload()" type="button" class="btn btn-default">
-                                刷新
-                            </button>
-                            <button onclick="javascript:history.back(-1);" type="button" class="btn btn-default">
-                                后退
-                            </button>
-                            <button onclick="javascript:history.back(1)" type="button" class="btn btn-default">
-                                前进
-                            </button>
-
-                        </div>
-                    </div> -->
-						<div class="col-md-4">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-search"></i></span>
-								<input type="text" class="form-control" id="loanAppName"
-									name="loanAppName" maxlength="" value="${appName }"
-									placeholder="根据app名称搜索...">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<button type="button" onclick="loanAppfoReload();"
-								class="btn btn-primary">搜索</button>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<!-- 按钮触发模态框 -->
-						<button class="btn btn-primary" onClick="add();">新增</button>
-					</div>
-				</div>
-			</div>
-
-			<!-- 如果用户列表非空 -->
-			<table id="loanApp_tab" class="table table-bordered table-striped">
-				<thead>
-					<tr>
-						<th>序号</th>
-						<th>服务的名字</th>
-						<th>服务唯一标识</th>
-						<th>服务版本</th>
-						<th>请求参数</th>
-						<th>请求方法</th>
-						<th>请求路径</th>
-						<th>所属系统</th>
-						<th>创建时间</th>
-						<th>操作</th>
-					</tr>
-				</thead>
-			</table>
-		</div>
-	</div>
-
-	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-
-	<script src="${ctxStatic}/js/jquery.min.js"
-		type="text/javascript"></script>
-	<script src="${ctxStatic}/js/bootstrap.min.js"
-		type="text/javascript"></script>
+<body>
+<div class="kong"></div>
+<div class="btn-group juyou">
+	<button class="btn btn-primary" id="viewBtn">新增</button>
+	<button class="btn btn-primary" id="editBtn">编辑</button>
+	<button class="btn btn-primary" id="delBtn">删除</button>
+</div>
 
 
-	<script src="${ctxStatic}/js/fileinput.min.js"
-		type="text/javascript"></script>
-	<script src="${ctxStatic}/js/fileinput_locale_zh.js"
-		type="text/javascript"></script>
-	<script src="${ctxStatic}/js/jquery-confirm.min.js"></script>
-
-	<script src="${ctxStatic}/js/clipboard.min.js"></script>
-	<script
-		src="${ctxStatic}/js/jquery.dataTables.js"></script>
-
-
-
-
-	<script>
-		var list_ajax;
-		//当你需要多条件查询，你可以调用此方法，动态修改参数传给服务器
-		window.reloadTable = function(oTable, premise) {
-			var date = $(premise).val();
-			var param = {
-				"loanAppName" : date
-			};
-			oTable.settings()[0].ajax.data = param;
-			oTable.ajax.reload();
-		}
-
-		var loanApp_tab;
-		$(function() {
-
-			//初始化表格
-			var No = 0;
-			loanApp_tab = $('#loanApp_tab')
-					.DataTable(
-							{
-								"dom" : 'itflp',
-								"processing" : true,
-								"searching" : false,
-								"serverSide" : true, //启用服务器端分页
-								"bInfo" : false,
-								"language" : {
-									"url" : "${ctxStatic}/AdminLTE/plugins/datatables/language.json"
-								},
-								"ajax" : {
-									"url" : "${ctx}/apiInfo/list",
-									"type" : "post"
-								},
-								"columns" : [ {
-									"data" : null
-								}, {
-									"data" : "apiName"
-								}, {
-									"data" : "apiId"
-								}, {
-									"data" : "apiVersion"
-								}, {
-									"data" : "apiParasName"
-								}, {
-									"data" : "apiReqMethod"
-								}, {
-									"data" : "apiUrl"
-								}, {
-									"data" : "apiSysInfoId"
-								},
-
-								{
-									"data" : "createdAt"
-								}, {
-									"data" : null
-								}
-
-								],
-								"columnDefs" : [
-										{
-											targets : 0,
-											data : null,
-											render : function(data) {
-												No = No + 1;
-												return No;
-											}
-										},
-										/* 		{
-												    targets: 5,
-												    data: null,
-												    render: function (data) {
-												    	var btn;
-												    	if(data.state == 0){
-												    		btn = '<span class="badge bg-yellow">无效</span>';
-												    	}else if (data.state == 1){
-												    		btn = '<span class="badge bg-green">有效</span>';
-												    	}else if (data.state == 2){
-												    		btn = '<span class="badge bg-red">下架</span>';
-												    	}
-												    	return btn;
-												    }
-												},
-												{
-												    targets: 6,
-												    data: null,
-												    render: function (data) {
-												    	var btn;
-												    	if(data.hotState == 0){
-												    		btn = '<span class="badge bg-yellow">无效</span>';
-												    	}else if (data.hotState == 1){
-												    		btn = '<span class="badge bg-green">有效</span>';
-												    	}
-												    	return btn;
-												    }
-												},
-												{
-												    targets: 7,
-												    data: null,
-												    render: function (data) {
-												    	var btn;
-												    	if(data.promoteState == 0){
-												    		btn = '<span class="badge bg-yellow">无效</span>';
-												    	}else if (data.promoteState  == 1){
-												    		btn = '<span class="badge bg-green">有效</span>';
-												    	}
-												    	return btn;
-												    }
-												}, */
-										{
-											"targets" : 9,
-											"data" : null,
-											"render" : function(data) {
-												var btn = '<input type="button" class="btn btn-primary" value="查看" onClick="show('+ data.id + ');" /> &nbsp;'
-														+ '<a class="btn  btn-warning" target="_self" modal="lg" href="${ctx}/ops/loanApp/toUpdate?appId='
-														+ data.id
-														+ '">更新</a> &nbsp;'
-														+ '<a class="btn  btn-danger" data-body="确认要下架吗？" callback="infoReload();" target="ajaxTodo" href="javascript:void(0)" onclick="dele('
-														+ data.id + ')">删除</a>';
-												return btn;
-											}
-										} ]
-							}).on('preXhr.dt', function(e, settings, data) {
-						No = 0;
-					});
-		});
-		function loanAppfoReload() {
-			reloadTable(loanApp_tab, "#loanAppName");
-		}
-		function add(){
-			
-			$('#myModal').modal('show');
-		}
-		function show(id) {
-			
-			$.post("${ctx}/apiInfo/view", { appId: id},
-				function(data){
-				if(data){
-					$("#apiName").attr('value',data.apiName);
-					$("#apiId").attr('value',data.apiId);
-					$("#apiVersion").attr('value',data.apiVersion);
-					$("#apiParasName").attr('value',data.apiParasName);
-					$("#apiReqMethod").attr('value',data.apiReqMethod);
-					$("#apiUrl").attr('value',data.apiUrl);
-					$("#apiProtocol").attr('value',data.apiProtocol);
-					$("#apiSysInfoId").attr('value',data.apiSysInfoId);
-				}
-			}		
-			);
-			$('#myModal').modal('show');
-		
-		}
-		
-		function modalHidden(){
-		
-			$("#apiName").attr('value',"");
-			$("#apiId").attr('value',"");
-			$("#apiVersion").attr('value',"");
-			$("#apiParasName").attr('value',"");
-			$("#apiReqMethod").attr('value',"");
-			$("#apiUrl").attr('value',"");
-			$("#apiProtocol").attr('value',"");
-			$("#apiSysInfoId").attr('value',"");
-			$('#myModal').modal('hide');
-		}
-		 
-		function toUpdate(id) {
-			//$.post("${ctx}/loanApp/toUpdate", { appId: id});
-			window.location.href = "${ctx}/ops/loanApp/toUpdate?appId=" + id;
-		}
-
-		function dele(id) {
-			if (!window.confirm('你确定要下架吗？')) {
-				return;
-			}
-			var url = "${ctx}/ops/loanApp/delete";
-			var params = {
-				"appId" : id
-			};
-
-			//异步保存数据到库中
-			$.post(url, params, function(data) {
-				if (data == 1) {
-					alert("下架成功");
-					window.location.reload();
-				} else if (data == 0) {
-					alert("操作失败，稍后再试！");
-				} else {
-					alert("出现错误，稍后再试！");
-				}
-
-			}, "json");
-		}
-
-		$("#goLoanAppAdd").on('click', function() {
-			window.location.href = "${ctx}/ops/loanApp/toAdd";
-		});
-	</script>
-
+	<table id="tradeList" class="mychar1-table"></table>
 
 	<!-- 模态框（Modal） -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -334,35 +55,66 @@
 					<h4 class="modal-title" id="myModalLabel">服务注册</h4>
 				</div>
 				<div class="modal-body" id="modalBody">
-					<table>
-						<tr>
-								<td style="margin: 5px;">服务名字</td><td><input class="form-control" style="margin: 5px;" type="text" name="apiName" id="apiName"></td>
-								<td style="margin: 5px;">&nbsp;&nbsp;&nbsp;服务唯一标识</td><td><input class="form-control" style="margin: 5px;" type="text" name="apiId" id="apiId"></td>
-						</tr>
-						<tr>
-							    <td style="margin: 5px;">api版本</td><td><input class="form-control" style="margin: 5px;" type="text" name="apiVersion" id="apiVersion"></td>
-								<td style="margin: 5px;">&nbsp;&nbsp;&nbsp;请求参数</td><td><input class="form-control" style="margin: 5px;" type="text" name="apiParasName" id="apiParasName"></td>
-						</tr>
+					<form class="form-inline" role="form" id="sysForm">
+						<input type="hidden" id="id" name="id">
+						<div class="form-group">
+							<label for="apiName">服务名称</label> <input type="text"
+								class="form-control" id="apiName" name="apiName">
+						</div>
+						<div class="form-group">
+							<label for="apiId">服务标识</label> <input type="text"
+								class="form-control" id="apiId" name="apiId">
+						</div>
+
+						<div class="form-group">
+							<label for="apiVersion">服务版本号</label> <input type="text"
+								class="form-control" id="apiVersion" name="apiVersion">
+						</div>
+						<div class="form-group">
+							<label for="apiVersion">服务版本号</label> <input type="text"
+								class="form-control" id="apiVersion" name="apiVersion">
+						</div>
+						<div class="form-group">
+							<label for="apiParasName">服务所需参数</label> <input type="text"
+								class="form-control" id="apiParasName" name="apiParasName">
+						</div>												
+						<div class="form-group">
+							<label for="apiReqMethod">服务请求方法</label> <input type="text"
+								class="form-control" id="apiReqMethod" name="apiReqMethod">
+						</div>						
+						<div class="form-group">
+							<label for="fSysInfoId">服务所属系统</label> <input type="text"
+								class="form-control" id="fSysInfoId" name="fSysInfoId">
+						</div>							
+						<div class="form-group">
+							<label for="apiSysInfoId">服务调用路径</label> <input type="text"
+								class="form-control" id="apiSysInfoId" name="apiSysInfoId">
+						</div>	
+						<div class="form-group">
+							<label for="isOnline">是否在线</label> <input type="text"
+								class="form-control" id="isOnline" name="isOnline">
+						</div>	
+						<div class="form-group">
+							<label for="apiProtocol">调用协议</label> <input type="text"
+								class="form-control" id="apiProtocol" name="apiProtocol">
+						</div>							
+						<div class="form-group">
+							<label for="respParams">响应字段</label> <input type="text"
+								class="form-control" id="respParams" name="respParams">
+						</div>	
+						<div class="form-group">
+							<label for="respFormat">响应demo</label> <input type="text"
+								class="form-control" id="respFormat" name="respFormat">
+						</div>							
 						
-						<tr>
-							    <td style="margin: 5px;">请求方法</td><td><input class="form-control" style="margin: 5px;" type="text" name="apiReqMethod" id="apiReqMethod"></td>
-								<td style="margin: 5px;">&nbsp;&nbsp;&nbsp;请求路径</td><td><input class="form-control" style="margin: 5px;" type="text" name="apiUrl" id="apiUrl"></td>
-						</tr>
-						
-						
-						<tr>
-							    <td style="margin: 5px;">所用协议</td><td><input class="form-control" style="margin: 5px;" type="text" name="apiProtocol" id="apiProtocol"></td>
-								<td style="margin: 5px;">&nbsp;&nbsp;&nbsp;是否在线</td><td><input class="form-control" style="margin: 5px;" type="text" name="online" id="online"></td>
-						</tr>
-						
-						
-					</table>
-					
+						<input id="res" name="res" type="reset" style="display: none;" />
+					</form>
+
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" onClick="modalHidden();">关闭
+					<button type="button" class="btn btn-default" id="formCloseBtn">关闭
 					</button>
-					<button type="button" class="btn btn-primary">提交更改</button>
+					<button type="button" class="btn btn-primary" id="formCommitBtn">提交</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -370,5 +122,196 @@
 		<!-- /.modal -->
 	</div>
 
+
+	<script type="text/javascript">
+		$(function() {
+
+			//1.初始化Table
+			var oTable = new TableInit();
+			oTable.Init();
+
+			//2.初始化Button的点击事件
+			/* var oButtonInit = new ButtonInit();
+			oButtonInit.Init(); */
+
+		});
+
+		var TableInit = function() {
+			var oTableInit = new Object();
+			//初始化Table
+			oTableInit.Init = function() {
+				$('#tradeList').bootstrapTable({
+					url : '${ctx}/apiInfo/list', //请求后台的URL（*）
+					method : 'post', //请求方式（*）
+					toolbar : '#toolbar', //工具按钮用哪个容器
+					striped : true, //是否显示行间隔色
+					cache : false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+					pagination : true, //是否显示分页（*）
+					sortable : false, //是否启用排序
+					sortOrder : "asc", //排序方式
+					queryParams : oTableInit.queryParams,//传递参数（*）
+					sidePagination : "server", //分页方式：client客户端分页，server服务端分页（*）
+					pageNumber : 1, //初始化加载第一页，默认第一页
+					pageSize : 10, //每页的记录行数（*）
+					pageList : [ 10, 25, 50, 100 ], //可供选择的每页的行数（*）
+					strictSearch : true,
+					clickToSelect : true, //是否启用点击选中行
+					height : 560, //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+					uniqueId : "id", //每一行的唯一标识，一般为主键列
+					cardView : false, //是否显示详细视图
+					detailView : false, //是否显示父子表
+					columns : [ {
+						radio : true
+					}, {
+						field : 'id',
+						visible : false
+					}, {
+						field : 'apiName',
+						title : '服务名称'
+					}, {
+						field : 'apiId',
+						title : '服务标识'
+					}, 
+					 {
+						field : 'apiVersion',
+						title : '服务版本号'
+					}, 
+					 {
+						field : 'apiParasName',
+						title : '服务参数'
+					}, 
+					 {
+						field : 'apiReqMethod',
+						title : '服务请求方法'
+					}, 
+					 
+					  
+					 {
+						field : 'respFormat',
+						title : '服务响应demo'
+					}, 
+					 {
+						field : 'respParams',
+						title : '服务响应参数'
+					}, 
+					{
+						field : 'isOnline',
+						title : '是否在线'
+					}, 
+					
+					{
+						field : 'fSysInfoId',
+						title : '服务所属系统'
+					}, 
+					
+					
+					
+					
+					{
+						field : 'createdBy',
+						title : '创建人'
+					}, {
+						field : 'createdAt',
+						title : '创建时间'
+					}, {
+						field : 'updatedBy',
+						title : '修改人'
+					}, {
+						field : 'updatedAt',
+						title : '修改时间'
+					}
+
+					]
+				});
+			};
+
+			oTableInit.queryParams = function(params) {
+				var temp = { //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+					limit : params.limit, //显示一页多少记录
+					offset : params.offset, //第几条记录
+				// sdate: $("#stratTime").val(),
+
+				};
+				return temp;
+			};
+
+			return oTableInit;
+		};
+
+		$("#editBtn").click(function() {
+			var a = $("#tradeList").bootstrapTable('getSelections');
+			if (a.length == 1) {
+				$.map(a, function(row) {
+					for ( var item in row) {
+						//$("input[name="+item+"]").attr('value',row[item]);
+						$("#sysForm input[name=" + item + "]").val(row[item]);
+					}
+				});
+
+				$('#myModal').modal('show');
+
+			} else {
+				alert("请选中一行");
+			}
+
+		});
+
+		$("#viewBtn").click(function() {
+			$('#myModal').modal('show');
+		});
+
+		$("#formCommitBtn").click(function() {
+			//向后台提交数据
+			var jsonuserinfo = $('#sysForm').serializeObject();
+			
+			$.post("${ctx}/apiInfo/edit", jsonuserinfo, function(data) {
+				//alert(data);
+				if (data == 'ok') {
+
+					$('#myModal').modal('hide');
+
+					return true;
+				}
+
+			});
+			cleanForm($("#sysForm"));
+			//alert('测试一下，看是否自动刷新表格');
+			$('#tradeList').bootstrapTable('refresh');
+			return true;
+		});
+
+		$("#formCloseBtn").click(function() {
+			// $("input[name='res']").click();
+			cleanForm($("#sysForm"));
+			$('#myModal').modal('hide');
+			return true;
+		});
+		
+		$("#delBtn").click(function(){
+				
+			var a = $("#tradeList").bootstrapTable('getSelections');
+			if (a.length == 1) {
+				var delId=$.map(a, function(row) {return row.id;});
+					
+				//alert('delId='+delId);
+				$.get("${ctx}/apiInfo/del?id="+delId,function(data){
+						if(data=='ok'){
+							alert('删除成功');
+							//alert('测试一下，看是否自动刷新表格');
+							$('#tradeList').bootstrapTable('refresh');
+						}else {
+							alert(data);	
+						}
+						
+					
+				});
+				
+			} else {
+				alert("请选中一行");
+			}
+
+		});
+	
+	</script>
 </body>
 </html>

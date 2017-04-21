@@ -3,7 +3,9 @@
  */
 package com.aldb.service.regist.api;
 
-import com.aldb.service.common.bean.Page;
+import java.util.List;
+
+import com.aldb.service.common.bean.PaginationParas;
 import com.aldb.service.regist.api.bean.ApiInfoDto;
 
 /**
@@ -22,7 +24,15 @@ public interface ApiInfoService {
      * @param loanAppName
      * @return
      */
-    public Page<ApiInfoDto> getBannerPage(int start, int pageSize, String loanAppName);
+    public List<ApiInfoDto> getApiInfoDtoList(PaginationParas paginationParas);
 
     ApiInfoDto queryApiInfoDtoById(Long id);
+
+    ApiInfoDto getInfoById(Long id);
+
+    void doDeleteApiInfo(Long id);
+
+    void doUpdateApiInfo(ApiInfoDto dto);
+
+    void doInsertApiInfo(ApiInfoDto dto);
 }

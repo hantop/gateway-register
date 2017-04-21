@@ -79,7 +79,7 @@ public class ApiSysInfoController {
         PaginationParas paras = new PaginationParas(limit, offset);
         // 进行查询
 
-        List<ApiSysInfoDto> rows = apiSysInfoService.queryApiSysInfoDtoList(paras);
+        List<ApiSysInfoDto> rows = apiSysInfoService.getApiSysInfoDtoList(paras);
         Pagination<ApiSysInfoDto> p = new Pagination<>();
         p.setRows(rows);
         p.setTotal(CollectionUtils.isEmpty(rows) ? 0 : rows.size());

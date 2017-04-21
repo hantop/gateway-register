@@ -9,7 +9,7 @@ public interface ApiSysInfoService {
 
     ApiSysInfoDto getSysInfoById(Long id);
     
-    public List<ApiSysInfoDto> queryApiSysInfoDtoList(PaginationParas paginationParas);
+    public List<ApiSysInfoDto> getApiSysInfoDtoList(PaginationParas paginationParas);
     
     public Long doInsertSysInfo(ApiSysInfoDto record);
     

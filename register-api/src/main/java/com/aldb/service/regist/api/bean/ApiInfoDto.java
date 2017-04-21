@@ -17,12 +17,33 @@ public class ApiInfoDto extends BaseDto {
     private String apiVersion;
     private String apiParasName;
     private String apiReqMethod;
-    private Long apiSysInfoId; // 所属系统
+    private Long fSysInfoId; // 所属系统
 
     private String apiUrl;
 
-    private Integer online;// 是否在线
+    private Integer isOnline;// 是否在线
     private String apiProtocol;// 所用协议http,https
+
+    private String respFormat; // 响应格式
+    private String respParams;// 响应参数
+    
+    
+
+    public String getRespFormat() {
+        return respFormat;
+    }
+
+    public void setRespFormat(String respFormat) {
+        this.respFormat = respFormat;
+    }
+
+    public String getRespParams() {
+        return respParams;
+    }
+
+    public void setRespParams(String respParams) {
+        this.respParams = respParams;
+    }
 
     public Long getId() {
         return id;
@@ -72,12 +93,14 @@ public class ApiInfoDto extends BaseDto {
         this.apiReqMethod = apiReqMethod;
     }
 
-    public Long getApiSysInfoId() {
-        return apiSysInfoId;
+  
+
+    public Long getfSysInfoId() {
+        return fSysInfoId;
     }
 
-    public void setApiSysInfoId(Long apiSysInfoId) {
-        this.apiSysInfoId = apiSysInfoId;
+    public void setfSysInfoId(Long fSysInfoId) {
+        this.fSysInfoId = fSysInfoId;
     }
 
     public String getApiUrl() {
@@ -88,12 +111,14 @@ public class ApiInfoDto extends BaseDto {
         this.apiUrl = apiUrl;
     }
 
-    public Integer getOnline() {
-        return online;
+  
+
+    public Integer getIsOnline() {
+        return isOnline;
     }
 
-    public void setOnline(Integer online) {
-        this.online = online;
+    public void setIsOnline(Integer isOnline) {
+        this.isOnline = isOnline;
     }
 
     public String getApiProtocol() {

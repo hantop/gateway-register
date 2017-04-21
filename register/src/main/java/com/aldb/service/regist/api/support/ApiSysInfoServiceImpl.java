@@ -47,7 +47,7 @@ public class ApiSysInfoServiceImpl implements ApiSysInfoService {
     }
 
     @Override
-    public List<ApiSysInfoDto> queryApiSysInfoDtoList(PaginationParas paginationParas) {
+    public List<ApiSysInfoDto> getApiSysInfoDtoList(PaginationParas paginationParas) {
         List<SysInfo> sysInfoList = sysInfoDao
                 .querySysInfoList(paginationParas.getLimit(), paginationParas.getOffset());
         List<ApiSysInfoDto> result = new ArrayList<ApiSysInfoDto>();
