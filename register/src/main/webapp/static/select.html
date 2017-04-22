@@ -1,0 +1,76 @@
+<html>
+<head>
+<link rel="stylesheet"
+	href="../static/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="../static/css/bootstrap-table.min.css" />
+	
+	<link rel="stylesheet"
+	href="../static/css/select2.min.css" />
+	
+	
+<script type="text/javascript"
+	src="../static/js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript"
+	src="../static/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="../static/js/bootstrap-table.min.js"></script>
+<script type="text/javascript"
+	src="../static/js/bootstrap-table-zh-CN.js"></script>
+<script type="text/javascript"
+	src="../static/js/select2.min.js"></script>
+	
+<script type="text/javascript"
+	src="../static/js/select2.zh-CN.js"></script>
+	
+<script type="text/javascript"
+	src="../static/js/form-serialize.js"></script>
+	
+	
+<link>
+<script type="text/javascript">
+$(document).ready(function() {
+  $(".js-example-basic-single").select2();
+  
+  var data = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, 
+				{ id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, 
+				{ id: 4, text: 'wontfix' }];
+
+$(".js-example-data-array").select2({
+  data: data
+})
+
+  //$(".js-example-data-array").select2('val','4');
+  
+  
+$(".js-example-data-array-selected").select2({
+  data: data
+})
+
+});
+
+
+
+
+</script>
+
+
+
+</head>
+<body>
+<select class="js-example-basic-single">
+  <option value="AL">Alabama</option>
+  <option value="AL">Alabama</option>
+  <option value="AL">Alabama</option>
+  <option value="AL">Alabama</option>
+  <option value="WY">Wyoming</option>
+</select>
+<select class="js-example-data-array"></select>
+
+<select class="js-example-data-array-selected">
+  <option value="2" selected="selected">duplicate</option>
+</select>
+</body>
+
+
+</html>

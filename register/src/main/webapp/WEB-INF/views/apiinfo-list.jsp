@@ -70,10 +70,7 @@
 							<label for="apiVersion">服务版本号</label> <input type="text"
 								class="form-control" id="apiVersion" name="apiVersion">
 						</div>
-						<div class="form-group">
-							<label for="apiVersion">服务版本号</label> <input type="text"
-								class="form-control" id="apiVersion" name="apiVersion">
-						</div>
+
 						<div class="form-group">
 							<label for="apiParasName">服务所需参数</label> <input type="text"
 								class="form-control" id="apiParasName" name="apiParasName">
@@ -83,8 +80,12 @@
 								class="form-control" id="apiReqMethod" name="apiReqMethod">
 						</div>						
 						<div class="form-group">
-							<label for="fSysInfoId">服务所属系统</label> <input type="text"
-								class="form-control" id="fSysInfoId" name="fSysInfoId">
+							<label for="fSysInfoId">服务所属系统</label> 
+							<!--
+							<input type="text"  type="hidden"
+								class="form-control" id="fSysInfoId" name="fSysInfoId"> -->
+							<!--这里使用下拉框 -->
+							<select class="js-example-data-array" id="fSysInfoId" name="fSysInfoId"></select>
 						</div>							
 						<div class="form-group">
 							<label for="apiSysInfoId">服务调用路径</label> <input type="text"
@@ -257,6 +258,7 @@
 		});
 
 		$("#viewBtn").click(function() {
+			//请求后端初始化下拉框
 			$('#myModal').modal('show');
 		});
 
