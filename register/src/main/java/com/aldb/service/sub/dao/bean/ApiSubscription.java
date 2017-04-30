@@ -1,11 +1,12 @@
 package com.aldb.service.sub.dao.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * *table name is t_api_subscription 2017-04-19 11:22:39
  */
-public class ApiSubscription {
+public class ApiSubscription implements Serializable{
     /**
      * pk
      */

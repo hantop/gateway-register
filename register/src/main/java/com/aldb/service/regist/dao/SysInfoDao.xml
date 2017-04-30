@@ -121,6 +121,8 @@
     select 
     <include refid="SysInfo_Base_Column_List" />
     from t_sys_info
+    <if test="start!=null and  size!=null">
     LIMIT ${start},${size}
+    </if>
   </select>
 </mapper>

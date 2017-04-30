@@ -1,12 +1,18 @@
 package com.aldb.service.regist.dao.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * *table name is t_api_info 2017-04-19 11:17:02
  */
-public class ApiInfo {
+public class ApiInfo implements Serializable{
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6293394727575417717L;
+
+	/**
      * pk
      */
     private Long id;
@@ -81,8 +87,18 @@ public class ApiInfo {
     private String respParams;// 响应参数
     
     
+    private String host;//api服务器地址,用于分流
     
-    public String getRespFormat() {
+    
+    public String getHost() {
+		return host;
+	}
+
+	public void setHost(String host) {
+		this.host = host;
+	}
+
+	public String getRespFormat() {
         return respFormat;
     }
 

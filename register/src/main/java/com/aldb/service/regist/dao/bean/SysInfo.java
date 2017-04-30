@@ -1,43 +1,49 @@
 package com.aldb.service.regist.dao.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * *table name is t_sys_info 2017-04-19 11:17:02
  */
-public class SysInfo {
+public class SysInfo implements Serializable{
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3694911764785999488L;
+
+	/**
      * pk
      */
     private Long id;
 
     /**
-     * 绯荤粺鍚嶅瓧
+     * 系统名
      */
     private String sysName;
 
     /**
-     * 绯荤粺璇存槑
+     * 备注
      */
     private String sysRemark;
 
     /**
-     * 鍒涘缓鏃堕棿
+     *创建时间
      */
     private Date createdAt;
 
     /**
-     * 鏇存柊鏃堕棿
+     * 更新时间
      */
     private Date updatedAt;
 
     /**
-     * 鍒涘缓浜�
+     * 创建人
      */
     private String createdBy;
 
     /**
-     * 鏇存柊浜�
+     * 更新人
      */
     private String updatedBy;
 

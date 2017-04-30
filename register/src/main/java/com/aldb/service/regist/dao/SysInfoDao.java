@@ -21,6 +21,6 @@ public interface SysInfoDao {
 
     int deleteSysInfoById(Long oid);
     
-    List<SysInfo> querySysInfoList(@Param("size") int size,@Param("start") int start);
+    List<SysInfo> querySysInfoList(@Param("size") Integer size,@Param("start") Integer start);
     
 }

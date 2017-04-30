@@ -17,19 +17,28 @@ public class ApiInfoDto extends BaseDto {
     private String apiVersion;
     private String apiParasName;
     private String apiReqMethod;
-    private Long fSysInfoId; // 所属系统
+    private Long fSysInfoId; // 璁╁睘绯荤粺
 
     private String apiUrl;
 
-    private Integer isOnline;// 是否在线
-    private String apiProtocol;// 所用协议http,https
+    private Integer isOnline;// 鏄惁鍦ㄧ嚎
+    private String apiProtocol;// 鏀寔鍗忚
 
-    private String respFormat; // 响应格式
-    private String respParams;// 响应参数
+    private String respFormat; // 鍝嶅簲鏍煎紡
+    private String respParams;// 鍝嶅簲鍙傛暟
     
+    private String host;
     
 
-    public String getRespFormat() {
+    public String getHost() {
+		return host;
+	}
+
+	public void setHost(String host) {
+		this.host = host;
+	}
+
+	public String getRespFormat() {
         return respFormat;
     }
 

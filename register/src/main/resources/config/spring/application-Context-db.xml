@@ -94,5 +94,4 @@
 	</aop:config>
 	<!-- tx配置事务 end -->
 
-	<!--<import resource="spring-shiro.xml"/> -->
 </beans>

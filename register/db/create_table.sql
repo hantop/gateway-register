@@ -13,7 +13,7 @@ CREATE TABLE `t_api_info` (
 `api_version`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '1.0.0' COMMENT 'api版本号' ,
 `api_paras_name`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '请求参数名' ,
 `api_req_method`  varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '支持的请求方法,多个用英文逗号隔开' ,
-`f_sys_info_id`  bigint(20) NOT NULL COMMENT '所属系统id' ,
+`f_sys_info_id`  bigint(20)  COMMENT '所属系统id' ,
 `api_url`  varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '请求路径,即对应的spring mvc requestmapping的value值' ,
 `created_at`  datetime NULL DEFAULT NULL COMMENT '创建时间' ,
 `updated_at`  datetime NULL DEFAULT NULL COMMENT '更新时间' ,
@@ -27,7 +27,7 @@ PRIMARY KEY (`oid`),
 UNIQUE INDEX `api_id_version` (`api_id`, `api_version`) USING BTREE 
 )
 ENGINE=InnoDB
-DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+DEFAULT CHARACTER SET=utf8
 COMMENT='api注册表'
 AUTO_INCREMENT=3
 
@@ -48,7 +48,7 @@ CREATE TABLE `t_api_subscription` (
 PRIMARY KEY (`oid`)
 )
 ENGINE=InnoDB
-DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+DEFAULT CHARACTER SET=utf8
 COMMENT='api订阅表'
 AUTO_INCREMENT=1
 
@@ -71,7 +71,7 @@ CREATE TABLE `t_app_info` (
 PRIMARY KEY (`oid`)
 )
 ENGINE=InnoDB
-DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+DEFAULT CHARACTER SET=utf8
 COMMENT='app订阅表'
 AUTO_INCREMENT=1
 
@@ -94,7 +94,7 @@ CREATE TABLE `t_machine_info` (
 PRIMARY KEY (`oid`)
 )
 ENGINE=InnoDB
-DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+DEFAULT CHARACTER SET=utf8
 COMMENT='服务器注册表'
 AUTO_INCREMENT=1
 
@@ -115,7 +115,7 @@ CREATE TABLE `t_sys_info` (
 PRIMARY KEY (`oid`)
 )
 ENGINE=InnoDB
-DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+DEFAULT CHARACTER SET=utf8
 COMMENT='系统注册表'
 AUTO_INCREMENT=14
 
@@ -145,3 +145,4 @@ ALTER TABLE `t_machine_info` AUTO_INCREMENT=1;
 -- Auto increment value for `t_sys_info`
 -- ----------------------------
 ALTER TABLE `t_sys_info` AUTO_INCREMENT=14;
+alter table t_api_info add column host varchar(200) comment '服务器地址，这个地址优于machine中的host,用于分流使用';

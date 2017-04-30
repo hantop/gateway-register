@@ -20,12 +20,13 @@
 		<result column="api_protocol" property="apiProtocol" jdbcType="VARCHAR" />
 		<result column="resp_format" property="respFormat" jdbcType="VARCHAR" />
 		<result column="resp_params" property="respParams" jdbcType="VARCHAR" />
+		<result column="host" property="host" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="ApiInfo_Base_Column_List">
 		oid, api_name, api_id, api_version, api_paras_name, api_req_method,
 		f_sys_info_id,
 		api_url, created_at, updated_at, created_by, updated_by, is_online,
-		api_protocol,resp_format,resp_params
+		api_protocol,resp_format,resp_params,host
 	</sql>
 
 	<select id="getApiInfoById" resultMap="ApiInfo_BaseResultMap"
@@ -40,7 +41,7 @@
 		api_version, api_paras_name, api_req_method,
 		f_sys_info_id, api_url, created_at,
 		updated_at, created_by, updated_by,
-		is_online, api_protocol,resp_format,resp_params)
+		is_online, api_protocol,resp_format,resp_params,host)
 		values (#{id,jdbcType=BIGINT}, #{apiName,jdbcType=VARCHAR},
 		#{apiId,jdbcType=VARCHAR},
 		#{apiVersion,jdbcType=VARCHAR}, #{apiParasName,jdbcType=VARCHAR}, #{apiReqMethod,jdbcType=VARCHAR},
@@ -48,7 +49,7 @@
 		#{createdAt,jdbcType=TIMESTAMP},
 		#{updatedAt,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, #{updatedBy,jdbcType=VARCHAR},
 		#{isOnline,jdbcType=TINYINT}, #{apiProtocol,jdbcType=VARCHAR},
-		#{respFormat,jdbcType=VARCHAR},#{respParams,jdbcType=VARCHAR}
+		#{respFormat,jdbcType=VARCHAR},#{respParams,jdbcType=VARCHAR},#{host,jdbcType=VARCHAR}
 		)
 	</insert>
 	<insert id="insertSelectiveApiInfo" parameterType="com.aldb.service.regist.dao.bean.ApiInfo" keyProperty="id" useGeneratedKeys="true">
@@ -102,6 +103,9 @@
 			<if test="respParams != null">
 				resp_params,
 			</if>
+			<if test="host != null">
+				host,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="oid != null">
@@ -152,6 +156,9 @@
 			<if test="respParams != null">
 				#{respParams,jdbcType=VARCHAR},
 			</if>
+				<if test="host != null">
+				#{host,jdbcType=VARCHAR},
+			</if>
 		</trim>
 	</insert>
 	<update id="updateApiInfoById" parameterType="com.aldb.service.regist.dao.bean.ApiInfo">
@@ -170,7 +177,8 @@
 		is_online = #{isOnline,jdbcType=TINYINT},
 		api_protocol = #{apiProtocol,jdbcType=VARCHAR},
 		resp_format = #{respFormat,jdbcType=VARCHAR},
-		resp_params = #{respParams,jdbcType=VARCHAR}
+		resp_params = #{respParams,jdbcType=VARCHAR},
+		host = #{host,jdbcType=VARCHAR}
 		where oid = #{id,jdbcType=BIGINT}
 	</update>
 	<update id="updateSelectiveApiInfoById" parameterType="com.aldb.service.regist.dao.bean.ApiInfo">
@@ -214,6 +222,9 @@
 			</if>
 			<if test="apiProtocol != null">
 				api_protocol = #{apiProtocol,jdbcType=VARCHAR},
+			</if>
+			<if test="host != null">
+				host = #{host,jdbcType=VARCHAR},
 			</if>
 		</set>
 		where oid = #{oid,jdbcType=BIGINT}

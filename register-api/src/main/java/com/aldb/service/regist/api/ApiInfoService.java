@@ -17,7 +17,7 @@ public interface ApiInfoService {
     ApiInfoDto queryApiDtoByIdAndVersion(String apiId, String apiVersion);
 
     /**
-     * ∑÷“≥≤È—Øbanner
+     * 
      * 
      * @param start
      * @param pageSize
@@ -26,7 +26,7 @@ public interface ApiInfoService {
      */
     public List<ApiInfoDto> getApiInfoDtoList(PaginationParas paginationParas);
 
-    ApiInfoDto queryApiInfoDtoById(Long id);
+    //ApiInfoDto queryApiInfoDtoById(Long id);
 
     ApiInfoDto getInfoById(Long id);
 

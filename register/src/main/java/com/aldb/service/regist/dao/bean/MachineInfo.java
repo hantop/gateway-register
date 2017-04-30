@@ -1,12 +1,18 @@
 package com.aldb.service.regist.dao.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * *table name is t_machine_info 2017-04-19 11:17:02
  */
-public class MachineInfo {
+public class MachineInfo implements Serializable{
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3755807037171750839L;
+
+	/**
      * pk
      */
     private Long oid;
@@ -49,7 +55,7 @@ public class MachineInfo {
     /**
      * 是否在线，1在线0下线
      */
-    private Byte isOnline;
+    private Integer isOnline;
 
     public Long getOid() {
         return oid;
@@ -115,11 +121,11 @@ public class MachineInfo {
         this.updatedBy = updatedBy == null ? null : updatedBy.trim();
     }
 
-    public Byte getIsOnline() {
+    public Integer getIsOnline() {
         return isOnline;
     }
 
-    public void setIsOnline(Byte isOnline) {
+    public void setIsOnline(Integer isOnline) {
         this.isOnline = isOnline;
     }
 }

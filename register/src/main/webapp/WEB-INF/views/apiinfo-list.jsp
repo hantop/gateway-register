@@ -11,6 +11,10 @@
 	href="${ctx}/static/css/bootstrap.min.css" />
 <link rel="stylesheet"
 	href="${ctx}/static/css/bootstrap-table.min.css" />
+	
+
+	
+	
 <script type="text/javascript"
 	src="${ctx}/static/js/jquery-2.2.3.min.js"></script>
 <script type="text/javascript"
@@ -20,6 +24,9 @@
 <script type="text/javascript"
 	src="${ctx}/static/js/bootstrap-table-zh-CN.js"></script>
 
+
+
+	
 <script type="text/javascript"
 	src="${ctx}/static/js/form-serialize.js"></script>
 
@@ -81,15 +88,13 @@
 						</div>						
 						<div class="form-group">
 							<label for="fSysInfoId">服务所属系统</label> 
-							<!--
-							<input type="text"  type="hidden"
-								class="form-control" id="fSysInfoId" name="fSysInfoId"> -->
 							<!--这里使用下拉框 -->
-							<select class="js-example-data-array" id="fSysInfoId" name="fSysInfoId"></select>
+							<select  style="width:10em;" id="fSysInfoId" name="fSysInfoId">
+							</select>
 						</div>							
 						<div class="form-group">
-							<label for="apiSysInfoId">服务调用路径</label> <input type="text"
-								class="form-control" id="apiSysInfoId" name="apiSysInfoId">
+							<label for="apiUrl">服务调用路径</label> <input type="text"
+								class="form-control" id="apiUrl" name="apiUrl">
 						</div>	
 						<div class="form-group">
 							<label for="isOnline">是否在线</label> <input type="text"
@@ -107,7 +112,10 @@
 							<label for="respFormat">响应demo</label> <input type="text"
 								class="form-control" id="respFormat" name="respFormat">
 						</div>							
-						
+						<div class="form-group">
+							<label for="host">服务器地址</label> <input type="text"
+								class="form-control" id="host" name="host">
+						</div>
 						<input id="res" name="res" type="reset" style="display: none;" />
 					</form>
 
@@ -135,6 +143,13 @@
 			/* var oButtonInit = new ButtonInit();
 			oButtonInit.Init(); */
 
+			$.get("${ctx}/apiSysInfo/queryAllSys",function(data){
+				$("#fSysInfoId").append("<option value='' class='form-control'>请选择</option>");
+				for(var i=0;i<data.length;i++){
+					$("#fSysInfoId").append("<option class='form-control' value="+data[i].id+">"+data[i].sysName+"</option>");
+				}
+			
+			}); 
 		});
 
 		var TableInit = function() {
@@ -186,26 +201,31 @@
 						title : '服务请求方法'
 					}, 
 					 
-					  
-					 {
-						field : 'respFormat',
-						title : '服务响应demo'
-					}, 
 					 {
 						field : 'respParams',
 						title : '服务响应参数'
 					}, 
+					 {
+						field : 'respFormat',
+						title : '服务响应demo'
+					}, 
 					{
-						field : 'isOnline',
-						title : '是否在线'
+						field : 'apiProtocol',
+						title : '使用协议'
+					}, 
+					{
+						field : 'host',
+						title : '服务器地址'
 					}, 
 					
 					{
 						field : 'fSysInfoId',
 						title : '服务所属系统'
-					}, 
-					
-					
+					}	, {
+						field : 'isOnline',
+						title : '是否在线'
+					}
+				/* 	,
 					
 					
 					{
@@ -220,7 +240,7 @@
 					}, {
 						field : 'updatedAt',
 						title : '修改时间'
-					}
+					} */
 
 					]
 				});
@@ -240,12 +260,19 @@
 		};
 
 		$("#editBtn").click(function() {
+		 
 			var a = $("#tradeList").bootstrapTable('getSelections');
 			if (a.length == 1) {
 				$.map(a, function(row) {
-					for ( var item in row) {
-						//$("input[name="+item+"]").attr('value',row[item]);
-						$("#sysForm input[name=" + item + "]").val(row[item]);
+					for (var item in row) {
+						 if ($("#sysForm select[id=" + item + "]").length>0){
+
+							$("#sysForm select[id=" + item + "] option[value="+row[item].toString()+"]").attr("selected", true); 
+
+						}
+						else if($("#sysForm input[id=" + item + "]").length>0){
+							$("#sysForm input[id=" + item + "]").val(row[item]);
+						}
 					}
 				});
 
@@ -258,6 +285,7 @@
 		});
 
 		$("#viewBtn").click(function() {
+
 			//请求后端初始化下拉框
 			$('#myModal').modal('show');
 		});
