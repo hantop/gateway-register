@@ -8,6 +8,11 @@ import java.util.Date;
  */
 public class ApiSubscription implements Serializable{
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8904577545345210246L;
+
+	/**
      * pk
      */
     private Long oid;

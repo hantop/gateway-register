@@ -15,7 +15,7 @@ import com.aldb.service.regist.api.bean.ApiMachineInfoDto;
 public class ApiMachineInfoServiceImpl implements ApiMachineInfoService {
 
     /**
-     * 根据api所在系统id，查询api对应的服务器列表
+     * 
      */
     public List<ApiMachineInfoDto> queryMachineInfosBySysId(Long sysInfoId) {
         

@@ -1,5 +1,5 @@
 /**
- * 后端服务的注册
+ * 鏈嶅姟娉ㄥ唽
  */
 
 package com.aldb.service.regist;

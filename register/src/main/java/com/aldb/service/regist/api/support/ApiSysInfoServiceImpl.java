@@ -75,13 +75,7 @@ public class ApiSysInfoServiceImpl implements ApiSysInfoService {
 		return sysInfoDao.updateSysInfoById(s);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.aldb.service.regist.api.ApiSysInfoService#doDeleteSysInfo(java.lang
-	 * .Long)
-	 */
+	
 	@Override
 	public int doDeleteSysInfo(Long id) {
 

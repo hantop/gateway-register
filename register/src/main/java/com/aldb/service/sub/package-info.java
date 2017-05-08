@@ -1,5 +1,5 @@
 /**
- * 前端app对于后端服务的订阅
+ * api鏈嶅姟璁㈤槄
  */
 
 package com.aldb.service.sub;

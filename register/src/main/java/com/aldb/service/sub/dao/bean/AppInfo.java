@@ -8,6 +8,11 @@ import java.util.Date;
  */
 public class AppInfo implements Serializable{
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -160693055034308593L;
+
+	/**
      * pk
      */
     private Long id;
