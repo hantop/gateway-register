@@ -83,10 +83,10 @@ public class ApiInfoController {
         // 进行查询
 
         List<ApiInfoDto> rows = apiInfoService.getApiInfoDtoList(paras);
-
+        Integer total=apiInfoService.countApiInfoDto(paras);
         Pagination<ApiInfoDto> p = new Pagination<ApiInfoDto>();
         p.setRows(rows);
-        p.setTotal(CollectionUtils.isEmpty(rows) ? 0 : rows.size());
+        p.setTotal(total);
         return p;
     }
 

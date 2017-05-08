@@ -78,6 +78,11 @@ public class ApiInfoServiceImpl implements ApiInfoService {
 	}
 
 	@Override
+	public Integer countApiInfoDto(PaginationParas paginationParas) {
+		return apiInfoDao.count(null);
+	}
+	
+	@Override
 	public ApiInfoDto getInfoById(Long id) {
 		ApiInfo info = apiInfoDao.getApiInfoById(id);
 		ApiInfoDto dto = new ApiInfoDto();
@@ -109,5 +114,7 @@ public class ApiInfoServiceImpl implements ApiInfoService {
 		dto.setId(info.getId());// id传到前面去
 
 	}
+
+	
 
 }

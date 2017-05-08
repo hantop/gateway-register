@@ -27,6 +27,7 @@ public interface ApiInfoService {
     public List<ApiInfoDto> getApiInfoDtoList(PaginationParas paginationParas);
 
     //ApiInfoDto queryApiInfoDtoById(Long id);
+    Integer countApiInfoDto(PaginationParas paginationParas);
 
     ApiInfoDto getInfoById(Long id);
 
