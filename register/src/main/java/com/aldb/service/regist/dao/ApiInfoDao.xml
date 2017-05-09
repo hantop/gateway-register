@@ -234,14 +234,11 @@
 		where oid = #{id,jdbcType=BIGINT}
 	</delete>
 
-
-
-
 	<select id="queryApiInfoList" resultMap="ApiInfo_BaseResultMap">
 		select
 		<include refid="ApiInfo_Base_Column_List" />
-		from t_api_info
-		LIMIT ${start},${size}
+		from t_api_info  order by oid
+		LIMIT ${start},${size} 
 	</select>
 
 	<select id="count" resultType="int">

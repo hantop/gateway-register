@@ -79,7 +79,7 @@
 						</div>
 
 						<div class="form-group">
-							<label for="apiParasName">服务所需参数</label> <input type="text"
+							<label for="apiParasName">服务入参</label> <input type="text"
 								class="form-control" id="apiParasName" name="apiParasName">
 						</div>												
 						<div class="form-group">
@@ -105,7 +105,7 @@
 								class="form-control" id="apiProtocol" name="apiProtocol">
 						</div>							
 						<div class="form-group">
-							<label for="respParams">响应字段</label> <input type="text"
+							<label for="respParams">服务响应参数</label> <input type="text"
 								class="form-control" id="respParams" name="respParams">
 						</div>	
 						<div class="form-group">
@@ -172,7 +172,7 @@
 					pageList : [ 10, 25, 50, 100 ], //可供选择的每页的行数（*）
 					strictSearch : true,
 					clickToSelect : true, //是否启用点击选中行
-					height : 560, //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+					height : 860, //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
 					uniqueId : "id", //每一行的唯一标识，一般为主键列
 					cardView : false, //是否显示详细视图
 					detailView : false, //是否显示父子表
@@ -184,7 +184,26 @@
 					}, {
 						field : 'apiName',
 						title : '服务名称'
-					}, {
+					}, 
+					 {
+						field : 'apiParasName',
+						title : '服务入参'
+					}, 
+					 {
+						field : 'respParams',
+						title : '服务响应参数'
+					}, 
+					
+					{
+						field : 'apiUrl',
+						title : '服务请求路径'
+					},
+					
+					 {
+						field : 'apiReqMethod',
+						title : '服务请求方法'
+					}, 
+					{
 						field : 'apiId',
 						title : '服务标识'
 					}, 
@@ -192,19 +211,9 @@
 						field : 'apiVersion',
 						title : '服务版本号'
 					}, 
-					 {
-						field : 'apiParasName',
-						title : '服务参数'
-					}, 
-					 {
-						field : 'apiReqMethod',
-						title : '服务请求方法'
-					}, 
+					
+					
 					 
-					 {
-						field : 'respParams',
-						title : '服务响应参数'
-					}, 
 					 {
 						field : 'respFormat',
 						title : '服务响应demo'
@@ -266,7 +275,7 @@
 				$.map(a, function(row) {
 					for (var item in row) {
 						 if ($("#sysForm select[id=" + item + "]").length>0){
-
+							if(row[item]!=null)
 							$("#sysForm select[id=" + item + "] option[value="+row[item].toString()+"]").attr("selected", true); 
 
 						}
