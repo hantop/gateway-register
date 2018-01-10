@@ -1,8 +1,8 @@
-#api服务注册与订阅
-##说明
+# api服务注册与订阅
+## 说明
 后端开发的服务，通过注册服务器向网关提供功能。注册服务器主要有如下功能。但它不同于soa服务自动发现的注册服务器，它只是前后端进行协议定义的收集地。关于注册与订阅是否要作成自动发现，这个有待商榷。原因是api在使用的过程中，前后端需要先定义协议，后面进入开发与使用，是面向协议编程，而非面向接口或面向对象。如果为了提高网关对于api的服务器信息及权限校验信息的更高效可以将这部分数据作缓存，而无需作自动注册与发现。
 
-##主要功能
+## 主要功能
 ### 注册主要功能
 
 - 系统注册
@@ -12,7 +12,7 @@
 
 它们的关系是，一个系统提供n个api服务，该系统的服务器是由服务器绑定来提供。
 
-###注册功能表结构
+### 注册功能表结构
 
 
          create table t_sys_info(
@@ -63,7 +63,7 @@
 	alter table t_machine_info add is_online tinyint(4) not null default 1 comment '是否在线，1在线0下线';
 	alter table t_api_info add api_protocol varchar(20) not null default 'http' comment '请求协议,http,https';
 
-###app订阅主要功能
+### app订阅主要功能
 
 - 订阅app的创建
 - 该app 所订阅的api服务
